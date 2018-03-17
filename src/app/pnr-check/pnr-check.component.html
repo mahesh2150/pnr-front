@@ -1,0 +1,95 @@
+<div class="container main_container">
+  <div class="container top_margin">
+  <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <input type="text" class="form-control" id=pnr name="pnrNumber" [(ngModel)]="pnrNumber.pnr" placeholder="Enter PNR Number">  
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 center">
+          <button class="btn customButton" type="submit" data-toggle="collapse" style="border:none;" (click)="check()">Get PNR Status</button>
+      </div>
+  </div>
+</div>
+
+<!-- bottom -->
+
+<br>
+<div *ngIf="show_message">
+    <h3 style="text-align:center;color:red;">Flushed PNR</h3>
+</div>
+
+
+<div *ngIf="show_pnr_table ">
+<div class="container">
+  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+  </div>
+ <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">You searched for PNR:  <span class="bold">{{table.pnr}}</span>
+  </div>
+ </div>
+    <br>
+  <div class="table_border"style="text-align:center;">
+<div class="container">
+  <h3 style="text-align:center">Journey Details</h3>
+  <table class="table">
+    <tr>
+      <th>Train No:</th>
+      <td >{{table.train.number}}</td>
+      <th>Train Name:</th>
+      <td >{{table.train.name}}</td>
+    </tr>
+    <tr>
+      <th>From:</th>
+      <td >{{table.from_station.code}}</td>
+      <th>To:</th>
+      <td >{{table.to_station.code}}</td>
+    </tr>
+    <tr>
+      <th>Boarding Point:</th>
+      <td >{{table.boarding_point.code}}</td>
+      <th>Reserved Upto:</th>
+      <td >{{table.reservation_upto.code}}</td>
+    </tr>
+    <tr>
+      <th>Date of Journey:</th>
+      <td >{{table.doj}}</td>
+      <th>Class:</th>
+      <td >{{table.journey_class.code}}</td>
+    </tr>
+    </table> 
+  </div>  
+  <br>
+<div class="container">
+  <h3 style="text-align:center">Passenger Status</h3>
+  <table class="table passenger_table borderless" align="center" *ngFor="let item of passengers">
+  
+    <tr>
+      <th style="text-align:center" colspan="2">passenger {{item.no}}</th>
+    </tr>
+    <tr>
+      <th>Booking Status</th>
+      <td >{{item.booking_status}}</td>
+      
+    </tr>
+    <tr>
+      <th>*Current Status</th> 
+      <td >{{item.current_status}}</td>
+    </tr>
+    </table> 
+  </div>
+  <br>
+  <p><span style="font-weight:bold">Chart Prepared: </span>{{table.chart_prepared}}</p>
+<!-- <div class="container">
+  <table class="table table-bordered width">
+  
+    <tr>
+       <th class="col-md-6">Chart Prepared</th>
+         <td class="col-md-6">{{table.chart_prepared}}</td> 
+    </tr>
+       
+    </table> 
+</div> -->
+
+</div>
+</div>  
+
