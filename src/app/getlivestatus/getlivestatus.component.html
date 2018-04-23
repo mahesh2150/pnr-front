@@ -1,0 +1,93 @@
+<div class="div1" style="text-align: center;">
+  <h2><span *ngIf="show_train_details">{{statusResult.train.name}} {{statusResult.train.number}}</span> TRAIN RUNNING STATUS</h2>
+  <form #myForm="ngForm"  (ngSubmit)="getLiveStatus()">
+    <div class="example-container" >
+      <mat-form-field class="example-full-width" >
+        <input class="form-control"
+        [matAutocomplete]="auto"
+         id=train #trainNumber="ngModel" name="trainNumber" 
+           [(ngModel)]="search.trainNumber" 
+           (keyup)="getTrains($event.target.value)"
+           matInput placeholder="Enter Train Number or Name" required>
+           <!-- (keyup)="getTrains($event.target.value)" -->
+            <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+            {{option.number}} - {{ option.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="warn">Check Live Status</button>
+      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+      </div>
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" >Enter valid Train number</div>
+      <!-- <div>
+        <mat-chip-list align="center" >
+          <mat-chip color="warn" selected="true" *ngFor="let item of dates" (click)="setDate(item.name)">{{item.value}}</mat-chip>
+        </mat-chip-list>
+      </div> -->
+      <div style="text-align: center; padding:10px; margin-bottom:20px;">
+        <button class="date_buttons" type="button" mat-raised-button color="warn" *ngFor="let item of dates" (click)="setDate(item.name)">{{item.value}}</button>
+      </div>
+      <!-- <div>
+        <mat-button-toggle-group #group="matButtonToggleGroup">
+          <mat-button-toggle class="new_date_button" [value]="item.name" *ngFor="let item of dates">{{item.value}}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="example-selected-value">Selected value: {{group.value}}</div>
+      </div> -->
+      
+    </div> 
+    <div *ngIf="show_spinner" align="center"> 
+        <mat-spinner color="warn"></mat-spinner>
+      </div> 
+    <div *ngIf="show_Train_doesnt_run_on_the_date_queried" style="text-align:center;color:red;"><h2>Train doesn’t run on the date queried.</h2></div>
+    <div *ngIf="show_message_try_again">
+        <h3 style="text-align:center;color:red;">Unable to get Status Please Try Again</h3>
+    </div>
+    <div *ngIf="show_position">
+      <mat-card style="background-color: #f44336;"><h3 style="text-align:center;color:#ffffff;">{{statusResult.position}}</h3></mat-card>
+    </div>
+  </form>
+  <div  *ngIf="show_table" class="example-container mat-elevation-z8" style="margin-top: 50px;">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="sss">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element" style="padding:0px;">
+          <div id="rectangle" 
+            style="margin-left:50%"
+            [ngClass]="{'verticalbar2': !element.has_arrived, 'verticalbar1': element.has_arrived, 'verticalbar_source': element.scharr=='Source', 'verticalbar_dest': element.schdep=='Destination', 'verticalbar_position': test==element.station.code}">
+             <span *ngIf="test==element.station.code" >
+                <img src="../../assets/ripple.svg" class="ripple">
+              </span> 
+          </div>
+          <!-- <div id="rectangle" 
+            [ngClass]="{'ripple': test==element.station.code}"
+            [ngClass]="{'verticalbar1': 1 == 1}">
+          </div> -->
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="station">
+        <mat-header-cell *matHeaderCellDef>Station</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.station.name}}<br><span style="color:gray">{{element.distance}} km (day {{element.day+1}})</span></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="scheduled_time">
+        <mat-header-cell *matHeaderCellDef>Scheduled Time</mat-header-cell>
+        <mat-cell *matCellDef="let element"><span style="color:gray">Arr:  </span>{{element.scharr}}<br><span style="color:gray">Dep: </span>{{element.schdep}}</mat-cell>
+        <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
+      </ng-container>
+      <ng-container matColumnDef="actual_time">
+        <mat-header-cell *matHeaderCellDef>Actual Time</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.actarr}}<br>{{element.actdep}} </mat-cell>
+        <!-- <mat-cell *matCellDef="let element"> {{element.actdep}} </mat-cell> -->
+      </ng-container>
+      <ng-container matColumnDef="delay">
+        <mat-header-cell *matHeaderCellDef>Late By</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.status}}<br><span *ngIf="!element.has_arrived" style="color:gray">(expected)</span></mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+</div>

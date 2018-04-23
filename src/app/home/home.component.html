@@ -1,15 +1,20 @@
-<div class="container-fluid main_container">
-  <!-- <div class="container top_margin"> -->
-  <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" class="form-control" id=pnr name="pnrNumber" [(ngModel)]="pnrNumber" placeholder="Enter PNR Number">  
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 center">
-          <button class="btn customButton" type="submit" data-toggle="collapse" style="border:none;" (click)="check()">Get PNR Status</button>
-      </div>
-  <!-- </div> -->
-</div>
-  
+ <div class="main_div">
+    <div align="center" class="pnr_div">
+        <form #myForm="ngForm"  (ngSubmit)="getPNR()">
+            <mat-form-field class="example-full-width" > 
+                    <input type="text"  pattern="[0-9]*" class="form-control" id=pnr name="pnrnumber" minlength="10" maxlength="10" #pnrNumber="ngModel" [(ngModel)]="pnrnumber.pnr" matInput placeholder="Enter PNR Number" required>  
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="warn" >Get PNR Status</button>
+            <div class="alert alert-danger" *ngIf="pnrNumber.touched && !pnrNumber.valid">
+                      <div *ngIf="pnrNumber.errors.required">Enter PNR number</div>
+                      <div *ngIf="pnrNumber.errors.minlength">PNR number should be 10 digits</div>
+                      <div *ngIf="pnrNumber.errors.pattern">PNR number should be only numbers</div>
+            </div>
+         </form>
+    </div>
+ </div>
+ 
+ 
+ 
+ 
 

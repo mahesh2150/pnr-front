@@ -1,0 +1,75 @@
+<div class="div1" style="text-align: center;">
+  <h2><span *ngIf="show_train_details">{{statusResult.train.name}} {{statusResult.train.number}}</span> TRAIN Route & Schedule</h2>
+  <form #myForm="ngForm"  (ngSubmit)="getTrainRoute()">
+    <div class="example-container" >
+      <mat-form-field class="example-full-width" >
+        <input class="form-control"
+        [matAutocomplete]="auto"
+         id=train #trainNumber="ngModel" name="trainNumber" 
+           [(ngModel)]="search.trainNumber" 
+           (keyup)="getTrains($event.target.value)"
+           matInput placeholder="Enter Train Number or Name" required>
+           <!-- (keyup)="getTrains($event.target.value)" -->
+            <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+            {{option.number}} - {{ option.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="warn">Check Train Schedule</button>
+      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+      </div>
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" >Enter valid Train number</div>
+      
+    </div> 
+    <div *ngIf="show_spinner" align="center"> 
+        <mat-spinner color="warn"></mat-spinner>
+      </div> 
+    <div *ngIf="show_message_try_again">
+        <h3 style="text-align:center;color:red;">Unable to get Status Please Try Again</h3>
+    </div>
+  </form>
+  <div *ngIf="show_classes">
+       <mat-card> 
+        <span style="font-weight:bold;">Class: </span><span *ngFor="let option of classes_array"> {{option }} </span>
+        <span style="font-weight:bold;margin-left:98px;">Runs: </span><span *ngFor="let option of days_array"> {{option}} </span>
+       </mat-card>
+    </div>
+  <div  *ngIf="show_table" class="example-container mat-elevation-z8" style="margin-top: 50px;">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="no">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.no}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="station">
+        <mat-header-cell *matHeaderCellDef>Station</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.station.name}}<br><span style="color:gray">({{element.station.code}})</span></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="scheduled_time">
+        <mat-header-cell *matHeaderCellDef>Scheduled Time</mat-header-cell>
+        <mat-cell *matCellDef="let element"><span style="color:gray">Arr:  </span>{{element.scharr}}<br><span style="color:gray">Dep: </span>{{element.schdep}}</mat-cell>
+        <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
+      </ng-container>
+      <ng-container matColumnDef="distance">
+        <mat-header-cell *matHeaderCellDef>Distance</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.distance}} km</mat-cell>
+        <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
+      </ng-container>
+      <ng-container matColumnDef="halt">
+        <mat-header-cell *matHeaderCellDef>Halt</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span  *ngIf="element.halt!==-1">{{element.halt}}</span>
+          <span  *ngIf="element.halt==-1">-</span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="day">
+        <mat-header-cell *matHeaderCellDef>Day</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.day}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+</div>

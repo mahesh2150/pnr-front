@@ -11,4 +11,7 @@ export class CommonService {
 getPnr(url,pnrNumber):Observable<any>{
       return this.http.post(url,pnrNumber).map(res=>res.json());
     }
+getTrainsList(url,search):Observable<any>{
+      return this.http.post(url,search).map(res=>res.json());
+    }
 }

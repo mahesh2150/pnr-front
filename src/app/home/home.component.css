@@ -7,36 +7,35 @@ body{
    
 }
 
-.customButton{
-     background-color: #c20303;
-    border-radius:0 10px;
-    /* border: none; */
-    border: none !important;
-    padding: 7px 23px;
-    color: white;
-    font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-     outline: none !important;
-   box-shadow: none;
-}
-
-.main_container{
-    background: url("../../assets/train5.jpg");   
-     padding:40px;
-     min-height: 400px;
-     margin-top: 100px;
-      /* background: rgba(19, 18, 18, 0.726);   */
-    color: white;
-     background-size: cover;
+.main_div{
+ /* background: url("../../assets/train5.jpg");    */
+    padding:40px;
+    min-height: 100vh;
+    background-size: cover;
     background-repeat: no-repeat;
     border: none;
 }
 
-input{
-    border: 1px solid black;
+.pnr_div{
+    margin-top:6vh;
 }
 
-@media only screen and (max-width: 576px) {
+.example-full-width{
+    width: 40%;
+}
+/* 
+.main_container{
+    background: url("../../assets/train5.jpg");   
+    padding:40px;
+    min-height: 100vh;
+      // background: rgba(19, 18, 18, 0.726);  
+    color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+} */
+
+/* @media only screen and (max-width: 576px) {
 .center {
     text-align: center;
 }
@@ -45,4 +44,4 @@ input{
     margin-top:10px;
 }
 }
- 
+  */

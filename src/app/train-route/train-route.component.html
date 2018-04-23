@@ -1,0 +1,25 @@
+<div class="div1">
+  <h1 align="center">TRAIN Route & Schedule</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getTrainRoute()">
+    <div class="example-container" align="center">
+      <mat-form-field class="example-full-width" >
+        <input class="form-control"
+        [matAutocomplete]="auto"
+         id=train #trainNumber="ngModel" name="trainNumber" 
+           [(ngModel)]="search.trainNumber" (keyup)="getTrains($event.target.value)"
+           matInput placeholder="Enter Train Number or Name" required>
+            <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+            {{option.number}} - {{ option.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="warn">Get Schedule</button>
+      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+      </div>
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter valid Train number</div>
+    </div>
+  </form>
+</div>

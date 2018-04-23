@@ -1,0 +1,79 @@
+<div class="div1">
+  <h1 align="center">Check Train Seat Availability</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getDate1()">
+    <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto"
+          id=train #trainNumber="ngModel" name="trainNumber" 
+            [(ngModel)]="search.trainNumber" (keyup)="getTrains($event.target.value)"
+            matInput placeholder="Enter Train Number or Name" required>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+              {{option.number}} - {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+          <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+      </div>
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">
+        Enter valid Train number
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="myDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          id=train #srcName="ngModel" name="srcName" 
+            [(ngModel)]="search.srcName"
+            matInput placeholder="Enter Source Station" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          id=train #srcName="ngModel" name="dstName" 
+            [(ngModel)]="search.dstName"
+            matInput placeholder="Enter Destination Station" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto1"
+          id=class #class="ngModel" name="class" 
+            [(ngModel)]="search.class"
+            matInput placeholder="Choose Class" required>
+          <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+              {{option.number}} - {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto2"
+          id=quota #class="ngModel" name="quota" 
+            [(ngModel)]="search.quota"
+            matInput placeholder="Choose Quota" required>
+          <mat-autocomplete #auto2="matAutocomplete">
+            <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+              {{option.number}} - {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-raised-button color="warn">Check Seat Availability</button>
+    </div>
+  </form>
+</div>

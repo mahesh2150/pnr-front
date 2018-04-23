@@ -1,95 +1,192 @@
-<div class="container main_container">
-  <div class="container top_margin">
-  <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+<div class="div1">
+  <h1 align="center">Check PNR Status</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getPNR()">
+    <div class="example-container" align="center">
+      <mat-form-field class="example-full-width" >
+        <input type="text"  pattern="[0-9]*" class="form-control" id=pnr name="pnrNumber" minlength="10" maxlength="10" #pnrNumber="ngModel" [(ngModel)]="pnrnumber.pnr" matInput placeholder="Enter PNR Number" required>  
+            <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="warn">Get PNR Status</button>
+      <div class="alert alert-danger" *ngIf="pnrNumber.touched && !pnrNumber.valid ">
+                        <!-- <div *ngIf="!myForm.form.valid">Enter PNR valid number</div>  -->
+                         <div *ngIf="pnrNumber.errors.required">Enter PNR number</div> 
+                        <div *ngIf="pnrNumber.errors.minlength">PNR number should be 10 digits</div>
+                        <div *ngIf="pnrNumber.errors.pattern">PNR number should be only numbers</div>
+                        
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <input type="text" class="form-control" id=pnr name="pnrNumber" [(ngModel)]="pnrNumber.pnr" placeholder="Enter PNR Number">  
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 center">
-          <button class="btn customButton" type="submit" data-toggle="collapse" style="border:none;" (click)="check()">Get PNR Status</button>
-      </div>
+    </div>
+  </form>
+  <div *ngIf="show_pnr_required" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter valid PNR number</div>
+  <div *ngIf="show_spinner" align="center"> 
+    <mat-spinner color="warn"></mat-spinner>
   </div>
-</div>
-
-<!-- bottom -->
-
-<br>
-<div *ngIf="show_message">
-    <h3 style="text-align:center;color:red;">Flushed PNR</h3>
-</div>
-
-
-<div *ngIf="show_pnr_table ">
-<div class="container">
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-  </div>
- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">You searched for PNR:  <span class="bold">{{table.pnr}}</span>
-  </div>
- </div>
-    <br>
-  <div class="table_border"style="text-align:center;">
-<div class="container">
-  <h3 style="text-align:center">Journey Details</h3>
-  <table class="table">
-    <tr>
-      <th>Train No:</th>
-      <td >{{table.train.number}}</td>
-      <th>Train Name:</th>
-      <td >{{table.train.name}}</td>
-    </tr>
-    <tr>
-      <th>From:</th>
-      <td >{{table.from_station.code}}</td>
-      <th>To:</th>
-      <td >{{table.to_station.code}}</td>
-    </tr>
-    <tr>
-      <th>Boarding Point:</th>
-      <td >{{table.boarding_point.code}}</td>
-      <th>Reserved Upto:</th>
-      <td >{{table.reservation_upto.code}}</td>
-    </tr>
-    <tr>
-      <th>Date of Journey:</th>
-      <td >{{table.doj}}</td>
-      <th>Class:</th>
-      <td >{{table.journey_class.code}}</td>
-    </tr>
-    </table> 
-  </div>  
+  <!-- show result " --> 
   <br>
-<div class="container">
-  <h3 style="text-align:center">Passenger Status</h3>
-  <table class="table passenger_table borderless" align="center" *ngFor="let item of passengers">
-  
-    <tr>
-      <th style="text-align:center" colspan="2">passenger {{item.no}}</th>
-    </tr>
-    <tr>
-      <th>Booking Status</th>
-      <td >{{item.booking_status}}</td>
+  <div *ngIf="show_message_Flushed_PNR">
+      <h3 style="text-align:center;color:red;">Flushed PNR</h3>
+  </div>
+  <div *ngIf="show_message_try_again">
+      <h3 style="text-align:center;color:red;">Unable to get PNR Status Please Try Again</h3>
+  </div>
+  <div *ngIf="show_message_No_Data_Available">
+      <h3 style="text-align:center;color:red;">No Data Available</h3>
+  </div>
+  <!-- End of show result --> 
+  <div  *ngIf="show_pnr_table">
+   <h2 style="text-align:center">Journey Details</h2>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+          <ng-container matColumnDef="trainNo">
+             <mat-header-cell *matHeaderCellDef > Train No: </mat-header-cell> 
+            <mat-cell *matCellDef="let element">{{element.train.number}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="trainName">
+            <mat-header-cell *matHeaderCellDef> Train Name: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.train.name}} </mat-cell>
+          </ng-container>
+
+           <ng-container matColumnDef="from">
+            <mat-header-cell *matHeaderCellDef> From: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.from_station.code}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="to">
+            <mat-header-cell *matHeaderCellDef> To: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.to_station.code}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    
+        <mat-table #table [dataSource]="dataSource">
+          <ng-container matColumnDef="boarding_point">
+            <mat-header-cell *matHeaderCellDef> Boarding Point: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.from_station.code}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="reserved_upto">
+            <mat-header-cell *matHeaderCellDef> Reserved Upto: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.to_station.code}} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="doj">
+            <mat-header-cell *matHeaderCellDef> Date of Journey: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.from_station.code}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="class">
+            <mat-header-cell *matHeaderCellDef> Class: </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.to_station.code}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+        </mat-table> 
+      </div>
+      <h2 style="text-align:center">Passenger Status</h2> 
+      <div style="text-align:center">
+        <mat-card class="example-card example-card1" style="text-align:center;" *ngFor="let item of passengers">
+          <mat-card-content>
+            <p>Passenger {{item.no}}</p>
+            <img mat-card-image src="../../assets/person.png" alt="Passenger" style="width: 6vw;">
+            <p>Booking Status</p>
+            <p style="color:#f44336">{{item.booking_status}}</p>
+            <p>*Current Status</p>
+            <p style="color:#f44336">{{item.current_status}}</p>
+          </mat-card-content>
+        </mat-card>
+        <h3><span >Chart Prepared: </span>{{chart_prepared}}</h3>
+      </div>
+  </div>
+
+ <mat-card class="example-card">
+  <div class="container ">
+    <div class="row div_border">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h4>What is PNR:</h4>
+          <p>   PNR in general stands for “Passenger Name Record.” </p>
+          <p>Simply, PNR is a record in the database of Indian Railways computer reservation system (IR-CRS) which saves the journey details for a passenger or the group of passengers.</p>
+          <p>To understand further, when a passenger reserves a ticket for any train in Indian Railways, all the details of passenger or the group of passengers are stored in the database of Central Railway Systems. PNR is a 10 digit number which is unique for the passenger or a group of passengers booked under one ticket. PNR is a unique reference number which is related to your journey details.</p>
+          <p>Passenger’s personal information like Name, Age, Gender and Identity (ID) details are saved in the database for any PNR reference number.</p>
+          <p>Generally, as we all know any Train has limited number of seats available for the journey, sometimes one may not get confirmed ticket and seats availability goes for Waiting List. But sometimes, passengers tends to cancel their confirmed or waiting tickets if their journey has cancelled due to any reason, In that case to know the current status of your ticket, you need PNR to check the status of your seats.</p>
+          <p>You can check PNR status of your railway ticket at <a href="https://railwayenquiry.net/pnr" target="_blank">railwayenquiry.net</a></p>
+          
+          <h4>Where to Find PNR number in your ticket:</h4>
+          <p>Commonly, you can book your railway tickets from a counter in your nearest Railway Station or you can book online in irctc.co.in. But you need to register to book your tickets in online.
+            </p>
+          <p>If you book your train tickets from any railway station, the PNR number is printed on the top left corner of the printed tickets as shown in the below image.</p>
+          <p><img src="../../assets/sample_ticket.jpg" width="80%"></p>
+          
+          <p>If you book your railway ticket in online, which is generally called as E-ticket the PNR number printed in the separate cell in Top Centre in the first row.</p>
+          <p><img src="../../assets/online_ticket_pnr.png" width="80%"></p>
+
+          <h4>How to check PNR status:</h4>
+          <p>There are many different ways to check your PNR status among which popular ones are listed below.
+          </p>
+          <ul>
+            <li>PNR status check online through websites.</li>
+            <li>Through mobile application.</li>
+            <li>Reservation status checks using SMS service.</li>
+            <li>Railway enquiry counters in your nearest railway stations</li>
+            <li>After final chart preparation</li>
+          </ul>
+
+          <h4>PNR status check online through websites:</h4>
+          <p>Checking PNR status through online is the most popular way to check your PNR status.</p>
+          <p>Following are some renowned websites where you can check your PNR status.</p>
+          <ol>
+            <li><a href="https://railwayenquiry.net" target="_blank">www.railwayenquiry.net</a>
+              <p>This website is best place where you can reach to get any information regarding Indian railways. It can be PNR status, train between the stations, Fare enquiry, Train live status etc. This site will make you to get any train details without a pinch of effort.</p>
+            </li>
+            <li><a href="http://www.indianrail.gov.in" target="_blank">www.indianrail.gov.in</a>
+              <p>This is Indian Railways official portal. It is designed and maintained by CRIS (Centre for Railway Information Systems).</p>
+            </li>
+            <li><a href="https://www.irctc.co.in" target="_blank">www.irctc.co.in</a>
+              <p>IRCTC (Indian Railway Catering and Tourism Corporation) is the only official partner of Indian Railways that manages online ticket booking. If you have booked your ticket through IRCTC website, just login into IRCTC account and click on 'Booked Ticket History', then select your E-Ticket and click on 'Get PNR Status'.</p>
+            </li>
+          </ol>
+
+          <h4>PNR status check using SMS service:</h4>
+          <p>To enhance customer satisfaction, Indian Railways has launched SMS service for PNR status enquiry. Without having an access to internet, passenger can check PNR status. Following are two different ways to check PNR status through SMS.</p>
+          <ol>
+            <li><strong>139 SMS service</strong>
+              <p>This service has launched by IRCTC in 2009. To check your PNR, you need to send the following message to 139.</p>
+                <p><span class="red_font">PNR &lt;your PNR number&gt;</span></p> 
+              <p>For example: <span class="red_font">PNR 9876543210</span></p>
+            </li>
+            <li><strong>5676747 SMS service</strong>
+              <p>Rail zone offers this service for the passengers.</p>
+              <p><strong>Send</strong> <span class="red_font">PNR &lt;your PNR number&gt; to 5676747</span></p>
+            </li>
+          </ol>
+          <h4>General other Frequently Asked Questions (FAQ) about PNR status:</h4>
+              <h5>1. How is PNR number generated?</h5>
+              <p>PNR number is a 10-digit unique number in which first 3 digits mentions the zone of the train with respect to the origin station and the remaining 7 digits are randomly generated.</p>
+            
+              <h5>2. How can I check IRCTC PNR status live? </h5>
+              <p>Enter your 10 digit PNR number on <strong>www.railwayenquiry.net</strong> website or railwayenquiry mobile app and click on "PNR Status" button. You will see the current status of your PNR along with other information like confirmation chances, departure-arrival timings, platform number, coach position, delay status and historical trends. </p>
+              <p>You can also check PNR status on CRIS maintained Indian Railway website http://www.indianrail.gov.in/enquiry/PnrEnquiry.html or on irctc website https://www.irctc.co.in.</p>
+            
+              <h5>3. Are these PNR numbers ever reused?</h5>
+              <p>Seven Days after your journey date, the status changes to "PNR flushed" for all Indian Railway pnr. Nine months after that, Indian Railways can be reused for new train journeys.</p>
+              
+              <h5>4. What happens if my railway PNR remains waitlisted after chart preparation?</h5>
+              <p>If your PNR remains in fully waitlisted mode even after final chart preparation will be automatically cancelled if booked through IRCTC and needs to be cancelled at reservation counters for tickets booked at PRS counters. Indian Railways charged a minimum amount of 60 Rs for cancelled tickets.</p>
       
-    </tr>
-    <tr>
-      <th>*Current Status</th> 
-      <td >{{item.current_status}}</td>
-    </tr>
-    </table> 
-  </div>
-  <br>
-  <p><span style="font-weight:bold">Chart Prepared: </span>{{table.chart_prepared}}</p>
-<!-- <div class="container">
-  <table class="table table-bordered width">
-  
-    <tr>
-       <th class="col-md-6">Chart Prepared</th>
-         <td class="col-md-6">{{table.chart_prepared}}</td> 
-    </tr>
-       
-    </table> 
+      </div>
+    </div>
+  </div> 
+ </mat-card>
+
+</div>
+
+
+<!-- Right sidebar-->
+<!-- <div class="div2">
+  <h1>hellooooo</h1>
 </div> -->
 
-</div>
-</div>  
 
+  

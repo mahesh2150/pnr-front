@@ -8,15 +8,28 @@ import {Router, NavigationExtras} from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- pnrNumber;
+   pnrnumber={"pnr":""};
   constructor(private router:Router) { }
 
   ngOnInit() {
   }
+
+  getPNR(){
+  if(this.pnrnumber.pnr){
+    var regex=/^[0-9]+$/;
+      if(  this.pnrnumber.pnr.length == 10 && this.pnrnumber.pnr.match(regex) ){
+
+       this.check();
+        return false;
+      }
+
+  }
+}
+
 check(){
    let navigationExtras: NavigationExtras = {
             queryParams: {
-                "pnrNumber": this.pnrNumber
+                "pnrnumber": this.pnrnumber.pnr
                }
         };
   this.router.navigate(['/pnr'],navigationExtras);

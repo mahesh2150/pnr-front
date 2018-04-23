@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-bodyyyy{
+ @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+ /*
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";*/
+/* @import "~@angular/material/prebuilt-themes/purple-green.css";  */
+
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+/* bodyyyy{
     background: url("./assets/train5.jpg"); 
-     /* height:734px;  */
+      height:734px;  
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-image: url(" https://www.wallpaperup.com/uploads/wallpapers/2013/08/20/136797/cae25dd3607cc9b121fd3ab51c393b00-700.jpg"); */
+     background-image: url(" https://www.wallpaperup.com/uploads/wallpapers/2013/08/20/136797/cae25dd3607cc9b121fd3ab51c393b00-700.jpg"); 
    
+} */
+
+body{
+    background-color: #fafafa;
 }
