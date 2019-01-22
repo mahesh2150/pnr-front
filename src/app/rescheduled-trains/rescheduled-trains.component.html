@@ -1,0 +1,67 @@
+<div class="div1">
+  <h1 align="center">Check Rescheduled Trains</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getTrains()">
+    <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="myDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-raised-button color="warn">Search</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
+    </div>
+  </form>
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h4>Rescheduled trains:</h4>
+          <p> Indian railway runs most of the trains on time. Few trains’ runs delay because of many reasons. The reasons always include, not get signal from next station, track renovation running on that line, some operational reasons, natural calamities and many more. But sometimes these trains may be rescheduled or can be cancelled. Any way you can always check the Live Running Status of your Train. But few trains cancelled by Indian railways and few trains rescheduled but, these train details are available to passengers all the time at <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a></p>
+          <h4>How to check rescheduled trains:</h4>
+          <ol>
+            <li>Go to <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on TRAIN DETAILS drop down
+            </li>
+            <li>Click on RESCHEDULED Trains
+            </li>
+            <li>Select the DATE when you would like to check the rescheduled trains list.
+            </li>
+            <li>Click on SEARCH button
+            </li>
+          </ol>
+          <p>That is it the rescheduled trains list for the particular date is in front of you.</p>
+          <p>Generally this list contains all the information about trains that have rescheduled. The details are</p>
+          <p>There are mainly two terms you need to remember as a passenger while checking Train Live Running status. They are Last Reported Location" and "Estimated Time of Arrival (ETA) at upcoming stops.</p>
+          <ul>
+            <li>Train details like train name and train number.</li>
+            <li>Source and destination stations</li>
+            <li>Rescheduled time</li>
+            <li>Rescheduled date</li>
+            <li>Time difference between the actual starting times to rescheduled time.</li>
+          </ul>
+          <p>You can check the rescheduled train list for next 30 days from the date of the calendar. But sometimes the Indian Railways update the rescheduled trains list in short notice. So its always better to check the rescheduled trains list just before few days of your journey.</p>
+          <h4>Frequently Asked Questions: </h4>
+          <ol>
+            <li>
+              <h4>Can I cancel the ticket for rescheduled train?</h4>
+              <p>Yes. If your train is delayed more than 3 hours of actual departure time you can cancel your reserved ticket.</p>
+            </li>
+            <li>
+              <h4>Can I get refund of I cancel the ticket for rescheduled train?</h4>
+              <p>Yes. If your train is delayed more than 3 hours of actual departure time then you cancel the ticket. You will get refund.</p>
+            </li>
+            <li>
+              <h4>How do I get refund I cancel ticket for rescheduled train?</h4>
+              <p>You need to file a TDR (Ticket Deposit Receipt) specifying that the train is rescheduled, then you will be refunded in 15 days.</p>
+            </li>
+          </ol>
+    </mat-card>
+</div>
+  <br>
+  <div align="center">
+	<app-google-ad-300-250></app-google-ad-300-250>
+</div>
+</div>
+

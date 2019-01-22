@@ -1,31 +1,103 @@
-
-
-
 <mat-toolbar color="warn">
   <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/">
-      <img  alt="railway enquiry" class="docs-angular-logo" src="../../assets/logo1.PNG" style="width:12vw"> 
+      <img  alt="railway enquiry" class="docs-angular-logo" src="../../assets/logo1.PNG" style="width: auto"> 
     <!-- <span class="mat-button-wrapper" style="font-size:25px">Railway Enquiry</span> -->
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
     <div class="mat-button-focus-overlay"></div>
   </a> 
 
   <!-- This fills the remaining space of the current row -->
-   <span class="example-fill-remaining-space"></span> 
-  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/pnr">
-     <span class="mat-button-wrapper" style="font-size:15px;font-weight:bold">PNR STATUS</span> 
+  <span class="example-fill-remaining-space"></span> 
+ <div id="desktop_menu">
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/check-pnr-status-online">
+     <span class="mat-button-wrapper" style="font-weight:bold">PNR STATUS</span> 
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
     <div class="mat-button-focus-overlay"></div>
   </a> 
-  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/live-status">
-     <span class="mat-button-wrapper" style="font-size:15px;font-weight:bold">LIVE STATUS</span> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/train-live-running-status">
+     <span class="mat-button-wrapper" style="font-weight:bold">SPOT YOUR TRAIN</span> 
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
     <div class="mat-button-focus-overlay"></div>
   </a> 
-  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/train-schedule">
-     <span class="mat-button-wrapper" style="font-size:15px;font-weight:bold">TRAIN SCHEDULE</span> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/indian-train-routes">
+     <span class="mat-button-wrapper" style="font-weight:bold">TRAIN SCHEDULE</span> 
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
     <div class="mat-button-focus-overlay"></div>
   </a> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/train-seat-availability">
+     <span class="mat-button-wrapper" style="font-weight:bold">SEAT AVAILABILITY</span> 
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/running-trains-between-stations">
+     <span class="mat-button-wrapper" style="font-weight:bold">TRAINS B/W STATIONS</span> 
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a> 
+    <button class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button [matMenuTriggerFor]="menu">
+      <span class="mat-button-wrapper" style="font-weight:bold">TRAIN DETAILS</span>
+      <mat-icon svgIcon="down_arrow"></mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/live-station">LIVE STATION</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/check-cancelled-trains">CANCELLED TRAINS</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/check-rescheduled-trains">RESCHEDULED TRAINS</a></button> 
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/train-fare-enquiry">TRAIN FARE</a></button>
+  </mat-menu>
+ 
+</div> 
+<div id="tablet_menu">
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/check-pnr-status-online">
+     <span class="mat-button-wrapper" style="font-weight:bold">PNR STATUS</span> 
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/train-live-running-status">
+     <span class="mat-button-wrapper" style="font-weight:bold">SPOT YOUR TRAIN</span> 
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/indian-train-routes">
+     <span class="mat-button-wrapper" style="font-weight:bold">TRAIN SCHEDULE</span> 
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a> 
+  <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/train-seat-availability">
+     <span class="mat-button-wrapper" style="font-weight:bold">SEAT AVAILABILITY</span> 
+    <div class="mat-button-ripple mat-ripple" matripple=""></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a> 
+    <button class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button [matMenuTriggerFor]="menu1">
+      <span class="mat-button-wrapper" style="font-weight:bold">TRAIN DETAILS</span>
+      <mat-icon svgIcon="down_arrow"></mat-icon>
+    </button>
+    <mat-menu #menu1="matMenu">
+    <a style="text-decoration:none;color: inherit; " href="/running-trains-between-stations"><button mat-menu-item>TRAINS B/W STATIONS</button></a>
+    <a style="text-decoration:none;color: inherit; " href="/live-station"><button mat-menu-item>LIVE STATION</button></a>
+    <a style="text-decoration:none;color: inherit; " href="/check-cancelled-trains"><button mat-menu-item>CANCELLED TRAINS</button></a>
+    <a style="text-decoration:none;color: inherit; " href="/check-rescheduled-trains"><button mat-menu-item>RESCHEDULED TRAINS</button> </a>
+    <a style="text-decoration:none;color: inherit; " href="/train-fare-enquiry"><button mat-menu-item>TRAIN FARE</button></a>
+  </mat-menu>
+ 
+</div> 
+
+<div id="mobile_menu">
+     <button class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button [matMenuTriggerFor]="menu2">
+      <mat-icon svgIcon="menu_icon"></mat-icon>
+    </button>
+    <mat-menu #menu2="matMenu">
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/check-pnr-status-online">PNR STATUS</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/train-live-running-status">SPOT YOUR TRAIN</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/indian-train-routes">TRAIN SCHEDULE</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/train-seat-availability">SEAT AVAILABILITY</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/running-trains-between-stations">TRAINS B/W STATIONS</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/live-station">LIVE STATION</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/train-fare-enquiry">TRAIN FARE</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/check-cancelled-trains">CANCELLED TRAINS</a></button>
+    <button mat-menu-item><a style="text-decoration:none;color: inherit; " href="/check-rescheduled-trains">RESCHEDULED TRAINS</a></button> 
+  </mat-menu> 
+</div>
+
     <!-- <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false" href="/seat-availability">
      <span class="mat-button-wrapper" style="font-size:15px;font-weight:bold">SEAT AVAILABILITY</span>
     <div class="mat-button-ripple mat-ripple" matripple=""></div>
@@ -33,3 +105,13 @@
   </a>  -->
   
  </mat-toolbar>   
+
+   <div class="div_social_share" align="center">
+     <app-google-top-banner id="show_header_ad_728-90" class="overflow-hidden"></app-google-top-banner> 
+     <app-google-ad-300-250 id="show_header_ad_300_250" ></app-google-ad-300-250>
+
+   <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frailwayenquiry.net%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><img src="assets/facebook.PNG" width="50px"></a>
+   <a target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Frailwayenquiry.net&amp;text=Indian%20railway%20PNR%20Status%20Seat%20Availability%20%26%20Train%20Status%20on%20railwayenquiry"><img src="assets/twitter.PNG" width="50px"></a>
+   <a target="_blank" href="https://plus.google.com/share?url=https%3A%2F%2Frailwayenquiry.net"> <img src="assets/googleplus.PNG" width="50px"></a>    
+ </div>  
+

@@ -7,7 +7,7 @@
         [matAutocomplete]="auto"
          id=train #trainNumber="ngModel" name="trainNumber" 
            [(ngModel)]="search.trainNumber" 
-           (keyup)="getTrains($event.target.value)"
+           (keyup)="getTrains($event)"
            matInput placeholder="Enter Train Number or Name" required>
            <!-- (keyup)="getTrains($event.target.value)" -->
             <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
@@ -18,6 +18,7 @@
         </mat-autocomplete>
       </mat-form-field>
       <button type="submit" mat-raised-button color="warn">Check Train Schedule</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
       <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
                          <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
       </div>
@@ -33,22 +34,22 @@
   </form>
   <div *ngIf="show_classes">
        <mat-card> 
-        <span style="font-weight:bold;">Class: </span><span *ngFor="let option of classes_array"> {{option }} </span>
-        <span style="font-weight:bold;margin-left:98px;">Runs: </span><span *ngFor="let option of days_array"> {{option}} </span>
+        <span style="font-weight:bold;">Class: </span><span *ngFor="let option of classes_array">  {{option}} </span>
+        <span style="font-weight:bold;margin-left:98px;">Runs: </span><span *ngFor="let option of statusResult.train.days"> <span *ngIf="option.runs=='Y'" style="font-weight:bold"> {{option.code | slice:0:1}} </span><span *ngIf="option.runs=='N'">-</span> </span>
        </mat-card>
     </div>
   <div  *ngIf="show_table" class="example-container mat-elevation-z8" style="margin-top: 50px;">
     <mat-table #table [dataSource]="dataSource">
-      <ng-container matColumnDef="no">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <ng-container matColumnDef="no" >
+        <mat-header-cell *matHeaderCellDef>No</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.no}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="station">
         <mat-header-cell *matHeaderCellDef>Station</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.station.name}}<br><span style="color:gray">({{element.station.code}})</span></mat-cell>
+        <mat-cell *matCellDef="let element"><a href="live-station/{{element.station.code}}/2">{{element.station.name}}<br><span style="color:gray">({{element.station.code}})</span></a></mat-cell>
       </ng-container>
       <ng-container matColumnDef="scheduled_time">
-        <mat-header-cell *matHeaderCellDef>Scheduled Time</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Arr / Dep</mat-header-cell>
         <mat-cell *matCellDef="let element"><span style="color:gray">Arr:  </span>{{element.scharr}}<br><span style="color:gray">Dep: </span>{{element.schdep}}</mat-cell>
         <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
       </ng-container>
@@ -58,7 +59,7 @@
         <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
       </ng-container>
       <ng-container matColumnDef="halt">
-        <mat-header-cell *matHeaderCellDef>Halt</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Halt (mins)</mat-header-cell>
         <mat-cell *matCellDef="let element">
           <span  *ngIf="element.halt!==-1">{{element.halt}}</span>
           <span  *ngIf="element.halt==-1">-</span>
@@ -71,5 +72,22 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-
 </div>
+<br>
+  <div>
+   <mat-card class="example-card" *ngIf="show_train_details">
+          <h4>{{statusResult.train.name}} {{statusResult.train.number}} route map</h4>
+          <p>{{statusResult.train.name}} starts from {{srcStationName}} ({{srcStationCode}}) at {{srcSchDep}}, reaches {{dstStationName}} ({{dstStationCode}}) at {{dstSchArr}} on day {{arrDay}}. It stops at {{stops}} stations including both source and destination stations. </p>
+    </mat-card>
+  </div>
+<br>
+<div align="center">
+	<app-google-ad-300-250></app-google-ad-300-250>
+</div>
+
+
+<div *ngIf="show_train_related_post">
+    <h3>Check <a href="/train-seat-availability/{{statusResult.train.number}}" target="_blank">{{statusResult.train.number}} Seat Availability</a></h3>
+    <h3>Check <a href="/train-live-running-status/{{statusResult.train.number}}" target="_blank">{{statusResult.train.number}} Live Train Running Status</a></h3>
+    <h3>Find Trains Between<a href="/running-trains-between-stations/{{srcStationCode}}/{{dstStationCode}}/{{todayDateFormat}}" target="_blank"> {{srcStationName}} - {{dstStationName}} </a></h3>
+  </div>

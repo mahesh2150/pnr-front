@@ -6,7 +6,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {ActivatedRoute} from "@angular/router";
 import * as $ from "jquery";
-
+import { Meta } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-pnr-check',
@@ -14,6 +16,7 @@ import * as $ from "jquery";
   styleUrls: ['./pnr-check.component.css']
 })
 export class PnrCheckComponent implements OnInit {
+  private apiUrl= environment.apiUrl;
   displayedColumns = ['trainNo','trainName','from','to'];
   displayedColumns1 = ['boarding_point','reserved_upto','doj','class'];
   pnrnumber={"pnr":""};
@@ -30,7 +33,11 @@ export class PnrCheckComponent implements OnInit {
   show_pnr_required: boolean;
   show_spinner:boolean;
   show_message_try_again:boolean;
-  constructor(private http: Http, private service: CommonService, private route: ActivatedRoute) {
+  constructor(private titleService: Title, private meta: Meta, private http: Http, private service: CommonService, private route: ActivatedRoute) {
+    //this.meta.addTag({ name: 'title', content: 'Check Train PNR Status Live | PNR Enquiry & Prediction Indian Railways' });
+    this.meta.addTag({ name: 'description', content: 'Check PNR status of your train ticket at RailwayEnquiry.net online. you can check current live PNR status of your ticket booked at IRCTC or Railway Counters. Our national train enquiry system NTES helps to get Indian Railways PNR status and prediction of waiting list tickets. PNR Enquiry.' });
+    this.meta.addTag({ name: 'author', content: 'RailwayEnquiry.net' });
+    this.meta.addTag({ name: 'keywords', content: 'PNR status, Check PNR,Indian Railways,PNR Enquiry,IRCTC PNR status,PNR status Live' });
     this.show_pnr_table = false;
     this.show_pnr_required = false;
     this.show_message_Flushed_PNR = false;
@@ -45,6 +52,7 @@ export class PnrCheckComponent implements OnInit {
   }
 
   ngOnInit() {
+     this.titleService.setTitle('Check Train PNR Status Live | PNR Enquiry & Prediction Indian Railways');
   }
 
 getPNR(){
@@ -65,7 +73,7 @@ getPNR(){
 }
 checkPNR() {
         this.show_spinner=true;
-        var url = '/api/getPNR';
+        var url = this.apiUrl+'/api/getPNR';
         //var url = 'http://localhost:4000/api/getPNR';
 
       // "http://api.erail.in/pnr?key=j6nyo09njd&pnr=4857412584";

@@ -1,79 +1,142 @@
 <div class="div1">
   <h1 align="center">Check Train Seat Availability</h1>
-  <form #myForm="ngForm"  (ngSubmit)="getDate1()">
+  <form #myForm="ngForm"  (ngSubmit)="getSeatAvailability()">
     <div class="example-container" align="center">
       <div>
         <mat-form-field class="example-full-width" >
           <input class="form-control"
           [matAutocomplete]="auto"
-          id=train #trainNumber="ngModel" name="trainNumber" 
-            [(ngModel)]="search.trainNumber" (keyup)="getTrains($event.target.value)"
-            matInput placeholder="Enter Train Number or Name" required>
+          id=train 
+          #trainNumber="ngModel" 
+          name="trainNumber" 
+          [(ngModel)]="search.trainNumber" 
+          (keyup)="getTrains($event)"
+          matInput 
+          placeholder="Enter Train Number or Name" 
+          required>
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of trainsList" [value]= "option.number">
               {{option.number}} - {{ option.name }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+        <button type="submit" mat-raised-button color="warn">Check Seat Availability</button>
+        <app-google-ad-300-250></app-google-ad-300-250>
       </div>
       <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
-          <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+          <div *ngIf="trainNumber.errors.required">Enter Train number</div> 
+          <div *ngIf="trainNumber.errors.minlength">Train number should be 5 digits</div>                
       </div>
       <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">
         Enter valid Train number
       </div>
-      <div>
+      <!-- <div>
         <mat-form-field class="example-full-width">
-          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="myDate">
+          <input 
+          matInput [min]="minDate" 
+          [max]="maxDate" 
+          [matDatepicker]="picker" 
+          placeholder="Choose a date" 
+          name="date" [(ngModel)]="myDate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field class="example-full-width" >
-          <input class="form-control"
-          id=train #srcName="ngModel" name="srcName" 
-            [(ngModel)]="search.srcName"
-            matInput placeholder="Enter Source Station" required>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Source Station" 
+              (change)="setDestCodes()" id=srcCode #srcCode="ngModel" name="srcCode" 
+              [(ngModel)]="search.srcCode">
+              <mat-option *ngFor="let item of sourceStationsList" [value]="item.station.code">
+                {{item.station.code}} - {{ item.station.name }}
+              </mat-option>
+            </mat-select>
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field class="example-full-width" >
-          <input class="form-control"
-          id=train #srcName="ngModel" name="dstName" 
-            [(ngModel)]="search.dstName"
-            matInput placeholder="Enter Destination Station" required>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Destination Station" 
+              id=dstCode #dstCode="ngModel" name="dstCode" 
+              [(ngModel)]="search.dstCode">
+              <mat-option *ngFor="let item of destinationStationsList" [value]="item.station.code">
+                {{item.station.code}} - {{ item.station.name }}
+              </mat-option>
+            </mat-select>
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field class="example-full-width" >
-          <input class="form-control"
-          [matAutocomplete]="auto1"
-          id=class #class="ngModel" name="class" 
-            [(ngModel)]="search.class"
-            matInput placeholder="Choose Class" required>
-          <mat-autocomplete #auto1="matAutocomplete">
-            <mat-option *ngFor="let option of trainsList" [value]= "option.number">
-              {{option.number}} - {{ option.name }}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field  class="example-full-width">
+            <mat-select placeholder="Choose Class" 
+              #classCode="ngModel" name="classCode" 
+              [(ngModel)]="search.classCode">
+              <span *ngFor="let class of classes">
+              <mat-option  *ngIf="class.available=='Y'"   [value]="class.code">
+                {{class.code}} - {{ class.name }} 
+              </mat-option>
+              </span>
+            </mat-select>
         </mat-form-field>
       </div>
       <div>
-        <mat-form-field class="example-full-width" >
-          <input class="form-control"
-          [matAutocomplete]="auto2"
-          id=quota #class="ngModel" name="quota" 
-            [(ngModel)]="search.quota"
-            matInput placeholder="Choose Quota" required>
-          <mat-autocomplete #auto2="matAutocomplete">
-            <mat-option *ngFor="let option of trainsList" [value]= "option.number">
-              {{option.number}} - {{ option.name }}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Quota" 
+              #quota="ngModel" name="quota"
+              [(ngModel)]="search.quota">
+              <mat-option *ngFor="let item of quotas" [value]="item.value">
+                {{item.value}} - {{ item.name }}
+              </mat-option>
+            </mat-select>
         </mat-form-field>
-      </div>
-      <button type="submit" mat-raised-button color="warn">Check Seat Availability</button>
+      </div> -->
     </div>
   </form>
+    <br>
+  <div>
+   <mat-card class="example-card">
+          <h4>Seat Availability:</h4>
+          <p>Indian railways provide passenger a facility to check the seat availability of any train and from any source station to destination station.  You can check seat availability for any train for next 30 days from the date at <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a></p>
+          <p>Checking train seat availability at railway enquiry is very simple and you need to do following steps.</p>
+          <ol>
+            <li>Visit <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on “SEAT AVAILABILITY”
+            </li>
+            <li>You can enter “Train Name” or “Train number” (if you know) in the test field.
+            </li>
+            <li>Click on “Check seat Availability”
+            </li>
+            <li>Choose a date that you would like to check the seat availability
+            </li>
+            <li>Choose source station and destination station
+            </li>
+            <li>Choose class
+            </li>
+            <li>Choose quota
+            </li>
+            <li>Click on check seat availability
+            </li>
+          </ol>
+          <p>That is it, the seat availability for the train and date is right in front of you. Railway enquiry shows you the result for 6 days from the date of your search.</p>
+          <p>Generally, the availability is in different stages.</p>
+          <ul>
+            <li>Available-(number of seats available)
+            </li>
+            <li>RAC
+            </li>
+            <li>Waiting List
+            </li>
+            <li>REGRET
+            </li>
+          </ul>
+          <p>The tickets generally move in this direction, from availability to RAC, from RAC to waiting list. Like the same way, from waiting list to confirmed ticket.</p>
+          <p>If the seat availability shows, Available you can book ticket and get confirmed seat. Once you get the confirmed ticket with berth, then compartment number and berth number will not change for you.</p>
+          <p>If the seat availability shows RAC (Reservation against Cancellation), you can book the ticket. This means the passenger ensures the certainty of travel but it does not guarantee a berth. Generally the tickets booked in RAC have very high chances of ticket to be confirmed. </p>
+          <p>If the seat availability shows WL/GNWL, you can book ticket under this but you can get confirmed ticket. You will get ticket in waiting list. There are different types of waiting list in Indian Railways, you can check it here. If you book ticket in waiting list, there are less chances if your ticket to be confirmed. The chance of your ticket to get confirmed is depends on the other person who cancels in confirmed ticket. </p>
+          <p>In some case, you can see REGRET in the seat availability; this means the issuing of tickets closed due to the maximum reach of tickets issued in waiting list. Indian railways don’t issue more waiting list tickets because if they issue more tickets, there will be no chance that the waiting list will be confirmed. So in that case, you cannot book ticket in that case. </p>
+    </mat-card>
+</div>
+  <br>
+  <div align="center">
+    <app-google-ad-300-250></app-google-ad-300-250>
+  </div>
 </div>

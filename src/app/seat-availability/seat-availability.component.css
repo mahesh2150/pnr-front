@@ -5,53 +5,10 @@
      min-height: 300px;
 } */
 
-.example-full-width{
-    width: 40%;
-}
 
-.mat-header-cell {
-    color: rgb(5, 3, 1);
-}
-.mat-header-cell {
-    font-size: 15px;
-    font-weight: 600;
-}
 
 /* .div_border{
     border: 2px solid black;
     box-shadow: 2px 2px 20px #000;
 } */
 
-.example-card1{
-    text-align: center;
-    /* width: 20%; */
-    width: auto;
-    margin-right: 2vw;
-    display: inline-block;
-    font-weight:bold;
-}
-
-.div1{
-margin-top: 6vh;
-float:left;
-width:60%;
-overflow:hidden;
-margin-left: 10vw;
-}
-.div2{
-margin-top: 15vh;
-float:right;
-width:25%;
-overflow: hidden;
-} 
-
-@media only screen and (max-width: 576px) {
-.div1{
-    margin-left: 1vw;
-    width: 90%;
-}
-.div2{
-   display: none;
-}
-}
- 

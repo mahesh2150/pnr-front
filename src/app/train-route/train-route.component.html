@@ -6,7 +6,8 @@
         <input class="form-control"
         [matAutocomplete]="auto"
          id=train #trainNumber="ngModel" name="trainNumber" 
-           [(ngModel)]="search.trainNumber" (keyup)="getTrains($event.target.value)"
+           [(ngModel)]="search.trainNumber" 
+           (keyup)="getTrains($event)"
            matInput placeholder="Enter Train Number or Name" required>
             <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
         <mat-autocomplete #auto="matAutocomplete">
@@ -16,10 +17,56 @@
         </mat-autocomplete>
       </mat-form-field>
       <button type="submit" mat-raised-button color="warn">Get Schedule</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
       <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
-                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>
+                         <div *ngIf="trainNumber.errors.minlength">Train number should be 5 digits</div>
       </div>
       <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter valid Train number</div>
     </div>
   </form>
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h3>Check Train Schedule and Route at Railway Enquiry</h3>
+          <p>As an Indian, you might travel in Indian Railways once a while. People prefer to make their journey on the train because it is very ease to travel. As a passenger, you might not travel from starting station to the last station, but sometimes it is helpful to know the train schedule and Route.</p>
+          <p>You can check <a href="https://railwayenquiry.net/train-seat-availability" target="_blank">Train seat availality</a> at Railway Enquiry.</p>
+          <h4>Train Schedule and Route:</h4>
+          <p> You can check the irctc train schedule and route at any time at railway enquiry. Indian Railways provide this to each and every passenger who wants to know about it. The train schedule service at railway enquiry shows all the details about the particular train which you are looking for. Getting information about Indian railway train schedule and route at railway enquiry is very simple and follows these steps.</p>
+          <ol>
+            <li>Visit <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on “TRAIN SCHEDULE”
+            </li>
+            <li>Enter Train number or Train name
+            </li>
+            <li>Click on Get Schedule
+            </li>
+          </ol>
+          <p>The train detail contains the following information.</p>
+          <ul>
+            <li>Classes which that train contains like 1A, 2A, 3A and Sleeper
+            </li>
+            <li>Runs on which day of the week like Sunday, Monday etc. few trains may run weekly.
+            </li>
+            <li>All the stations through with the train pass and reaches destination station
+            </li>
+            <li>Arrival time and departure time at particular station
+            </li>
+            <li>Halt generally in minutes. It is the time that the train halts in particular station.
+            </li>
+            <li>Distance in kilometres from one station to other station.
+            </li>
+          </ul>
+          <p>If you already booked the ticket and your railway ticket is in a waiting list, you can check  <a href="https://railwayenquiry.net/check-pnr-status-online" target="_blank">PNR Status</a> time to time to know the current status of your ticker.</p>
+          <p>Generally, the train timetable is the same and fixed all the time. But there are chances that the train may get delay due to various reasons mainly technical and operational reasons. If you book your ticket, there will be a clear mention of the departure time at your station. Anyway, you can always <a href="https://railwayenquiry.net/train-live-running-status" target="_blank">check live running status</a> of your train before reaching the railway station. But under some circumstances, the trains may get rescheduled or even canceled. The reasons for train reschedule and cancellation is natural calamities like floods and heavy rain.</p>
+          <p>By considering some reasons, Indian railways change train time schedule i.e timetable for few trains. But that information will be made available to the people ahead. Irctc never makes changes today train schedule any time.</p>
+          <p>You can always check the cancelled train list <a href="/check-cancelled-trains" target="_blank">here.</a></p>
+          <p>You can also check rescheduled train list <a href="/check-rescheduled-trains" target="_blank">here.</a></p>
+    </mat-card>
+</div>
+  <br>
+  <div align="center">
+	<app-google-ad-300-250></app-google-ad-300-250>
+</div>
 </div>

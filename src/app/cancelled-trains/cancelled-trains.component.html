@@ -1,0 +1,66 @@
+<div class="div1">
+  <h1 align="center">Check Cancelled Trains</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getTrains()">
+    <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width">
+          <input 
+          matInput [min]="minDate" 
+          [max]="maxDate" 
+          [matDatepicker]="picker" 
+          placeholder="Choose a date" 
+          name="date" [(ngModel)]="myDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-raised-button color="warn">Search</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
+    </div>
+  </form>
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h4>Cancelled Trains:</h4>
+          <p> Indian railway runs most of the trains on time. Few trains’ runs delay because of many reasons. The reasons always include, not get signal from next station, track renovation running on that line, some operational reasons, natural calamities and many more. But sometimes these trains may be rescheduled or can be cancelled. Some trains are cancelled due to floods, accidents etc. Any way you can always check the Live Running Status of your Train. But few trains cancelled by Indian railways and few trains rescheduled but, these train details are available to passengers all the time at <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a></p>
+          <h4>How to check cancelled trains:</h4>
+          <ol>
+            <li>Go to <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on TRAIN DETAILS drop down
+            </li>
+            <li>Click on Cancelled Trains
+            </li>
+            <li>Select the DATE when you would like to check the cancelled trains list.
+            </li>
+            <li>Click on SEARCH button
+            </li>
+          </ol>
+          <p>That is it the cancelled trains list for the particular date is in front of you.</p>
+          <p>Generally this list contains all the information about trains that have cancelled. The details are</p>
+          <ul>
+            <li>Train details like train name and train number.</li>
+            <li>Source and destination stations</li>
+            <li>Type of the train like special, superfast etc.</li>
+            <li>The train start time and date.</li>
+          </ul>
+          <p>You can check the cancelled train list for next 30 days from the date of the calendar. But sometimes the Indian Railways update the cancelled trains list in short notice. So its always better to check the cancelled trains list just before few days of your journey.</p>
+          <p>Once the Indian Railways cancels the train, then all the confirmed and waiting list tickets for that particular train is automatically cancelled.</p>
+          <h4>Frequently Asked Questions:</h4>
+          <ol>
+            <li>
+              <h4>Can I get refund of my ticket for cancelled train?</h4>
+              <p>Yes. You will get refund automatically if the train is cancelled. </p>
+            </li>
+            <li>
+              <h4>How do I get refund of my ticket for cancelled train?</h4>
+              <p>Indian railways will generate refund automatically within 5 to 6 days once the train is cancelled. But sometimes you need to file a TDR (Ticket Deposit Receipt) specifying that the train is cancelled, and then you will be refunded in 15 days. </p>
+            </li>
+          </ol>
+    </mat-card>
+</div>
+  <div align="center">
+    <app-google-ad-300-250></app-google-ad-300-250>
+  </div>
+  <br>
+</div>

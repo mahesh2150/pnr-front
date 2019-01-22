@@ -4,6 +4,50 @@
   flex: 1 1 auto;
 }
 
-/* .mat-toolbar{
-margin-top: -8px;
-} */
+
+.mat-button-wrapper{
+  font-size: 1vw;
+}
+.div_social_share{
+    margin-top: 5vh;
+    /* position: absolute; */
+    /* margin-left: 75vw; */
+}
+@media (min-width: 1025px) {
+
+   #desktop_menu { display: block; }
+   #tablet_menu{display: none;}
+   #mobile_menu { display: none; }  
+   #show_header_ad_728-90 { display: block; }  
+   #show_header_ad_300_250 { display: none; } 
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+   #desktop_menu { display: none; }
+   #tablet_menu{display: block;}
+   #mobile_menu { display: none; }  
+   #show_header_ad_728-90 { display: block; }  
+   #show_header_ad_300_250 { display: none; } 
+   /* .div_social_share{
+    margin-left: 80vw;
+    } */
+}
+@media (max-width: 767px) {
+  
+   #desktop_menu { display: none; }
+   #tablet_menu{display: none;}
+   #mobile_menu { display: block; }  
+   #show_header_ad_728-90 { display: none; }  
+   #show_header_ad_300_250 { display: block; } 
+   /* .div_social_share{
+    margin-left: 62vw;
+    }  */
+@media (max-width: 480px) {
+   #show_header_ad_728-90 { display: none; }  
+   #show_header_ad_300_250 { display: block; } 
+   /* .div_social_share{
+    margin-left: 45vw;
+    }  */
+  }
+}

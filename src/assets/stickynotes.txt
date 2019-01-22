@@ -1,0 +1,12 @@
+logo size for small screen
+remove console.log in frontend
+display error if searched pnr at night
+spinner below gap in getlivestatus
+train number mida click cheste train route ravali
+train-fare component lo (blur)="getSourceStationCodes($event.target.value)" two times executing
+
+trainlivestatus component lo 
+        train ye days lo run avthundo display cheyyali and train is currently at source and late by message ni hide cheyyali 
+        invalid train number isthe below messages hide cheyyali
+
+all train names json

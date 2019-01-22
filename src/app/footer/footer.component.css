@@ -1,0 +1,12 @@
+.font_size{
+    font-size: 0.7em;
+}
+
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 35px;
+}

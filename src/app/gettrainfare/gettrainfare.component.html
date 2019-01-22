@@ -1,0 +1,57 @@
+
+<div class="div1" style="text-align: center;">
+  <h2><span>Check Fare for {{search.trainNumber}}</span></h2>
+  <app-google-ad-300-250></app-google-ad-300-250>
+  <div  class="example-container mat-elevation-z8" style="margin-top: 50px;">
+  <div>
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="train_number">
+          <mat-header-cell *matHeaderCellDef>Train Number</mat-header-cell>
+          <mat-cell *matCellDef="let element"><a href="/indian-train-routes/{{element.train.number}}" target="_blank">{{element.train.number}}</a></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="train_name">
+          <mat-header-cell *matHeaderCellDef>Train Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.train.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="fare">
+          <mat-header-cell *matHeaderCellDef>Fare</mat-header-cell>
+          <mat-cell *matCellDef="let element"><span style="color:blue;font-weight:bold;">{{element.fare}}</span></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="src">
+          <mat-header-cell *matHeaderCellDef>Source</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.from_station.code}} - {{element.from_station.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dst">
+          <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.to_station.code}} - {{element.to_station.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quota">
+          <mat-header-cell *matHeaderCellDef>Quota</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.quota.code}}-{{element.quota.name}}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <!-- ddddd -->
+      </div>
+      <!-- <br>
+      <br>
+      <div>
+      <mat-table #table [dataSource]="dataSource1">
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.date}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="availability">
+          <mat-header-cell *matHeaderCellDef>Availability</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+      </mat-table>
+      </div> -->
+  </div>
+    <div align="center">
+	<app-google-ad-300-250></app-google-ad-300-250>
+</div>
+</div>

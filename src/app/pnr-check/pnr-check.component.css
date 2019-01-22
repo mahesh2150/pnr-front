@@ -5,56 +5,16 @@
      min-height: 300px;
 } */
 
-.example-full-width{
-    width: 40%;
-}
-
-.mat-header-cell {
-    color: rgb(5, 3, 1);
-}
-.mat-header-cell {
-    font-size: 15px;
-    font-weight: 600;
-}
 
 /* .div_border{
     border: 2px solid black;
     box-shadow: 2px 2px 20px #000;
 } */
 
-.example-card1{
-    text-align: center;
-    /* width: 20%; */
-    width: auto;
-    margin-right: 2vw;
-    display: inline-block;
-    font-weight:bold;
-}
 
-.div1{
-margin-top: 6vh;
-float:left;
-width:60%;
-overflow:hidden;
-margin-left: 10vw;
-}
-.div2{
-margin-top: 15vh;
-float:right;
-width:25%;
-overflow: hidden;
-} 
-.main_container{
 
-     padding:40px;
-     margin-top: 100px;
-      /* background: rgba(19, 18, 18, 0.726);   */
-    /* color: white; */
-     background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-    border-radius: 20px;
-}
+ 
+/* 
 
 .bold{
     font-size: 16px;
@@ -65,11 +25,7 @@ overflow: hidden;
 }
 
 .getPNRStatusButton{
-     background-color: #c20303;
-    border-radius:5px;
-    /* margin-top:20px; */
-
-    /* border: none; */
+   
 
     border: none !important;
     padding: 7px 23px;
@@ -109,14 +65,11 @@ table{
  .passenger_table{
   width: auto; 
   background-color: #d3cdcd;
-  /* border: 1px solid yellow; */
   border-radius: 0 10px;
   display: inline-block;
   margin-right:10px;
 } 
-/* .borderless> tr, td, th {
-      border: none;  
-} */
+
 .red_font{
     color: red;
 }
@@ -143,3 +96,4 @@ border: 2px solid yellow;
 }
 }
  
+ */

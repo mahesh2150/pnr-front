@@ -1,126 +1,901 @@
-{
-    "response_code": 200,
-    "debit": 3,
-    "from_station": {
-        "code": "BPL",
-        "lat": 23.2530923,
-        "name": "BHOPAL  JN",
-        "lng": 77.3962718
-    },
-    "train": {
-        "days": [
-            {
-                "runs": "Y",
-                "code": "MON"
-            },
-            {
-                "runs": "Y",
-                "code": "TUE"
-            },
-            {
-                "runs": "Y",
-                "code": "WED"
-            },
-            {
-                "runs": "Y",
-                "code": "THU"
-            },
-            {
-                "runs": "Y",
-                "code": "FRI"
-            },
-            {
-                "runs": "Y",
-                "code": "SAT"
-            },
-            {
-                "runs": "Y",
-                "code": "SUN"
-            }
-        ],
-        "classes": [
-            {
-                "available": "N",
-                "code": "2S",
-                "name": "SECOND SEATING"
-            },
-            {
-                "available": "N",
-                "code": "3E",
-                "name": "3rd AC ECONOMY"
-            },
-            {
-                "available": "N",
-                "code": "2A",
-                "name": "SECOND AC"
-            },
-            {
-                "available": "N",
-                "code": "SL",
-                "name": "SLEEPER CLASS"
-            },
-            {
-                "available": "N",
-                "code": "FC",
-                "name": "FIRST CLASS"
-            },
-            {
-                "available": "N",
-                "code": "1A",
-                "name": "FIRST AC"
-            },
-            {
-                "available": "N",
-                "code": "3A",
-                "name": "THIRD AC"
-            },
-            {
-                "available": "Y",
-                "code": "CC",
-                "name": "AC CHAIR CAR"
-            }
-        ],
-        "name": "BPL - NDLS SHATABDI EXP",
-        "number": "12001"
-    },
-    "availability": [
+
         {
-            "status": "AVAILABLE-0576",
-            "date": "16-7-2018"
+            "lat": 11.1425927,
+            "lng": 75.9709723,
+            "code": "CLT",
+            "name": "KOZHIKKODE"
         },
         {
-            "status": "AVAILABLE-0576",
-            "date": "17-7-2018"
+            "lat": 11.2377794,
+            "lng": 79.7395752,
+            "code": "SY",
+            "name": "SIRKAZHI"
         },
         {
-            "status": "AVAILABLE-0576",
-            "date": "18-7-2018"
+            "lat": 17.9807175,
+            "lng": 79.5131833,
+            "code": "KZJ",
+            "name": "KAZIPET JN"
         },
         {
-            "status": "AVAILABLE-0576",
-            "date": "19-7-2018"
+            "lat": 18.1117702,
+            "lng": 83.3959646,
+            "code": "VZM",
+            "name": "VIZIANAGRAM JN"
         },
         {
-            "status": "AVAILABLE-0576",
-            "date": "20-7-2018"
+            "lat": 14.185251,
+            "lng": 79.1529242,
+            "code": "RJP",
+            "name": "RAZAMPETA"
         },
         {
-            "status": "AVAILABLE-0576",
-            "date": "21-7-2018"
+            "lat": 25.58363,
+            "lng": 83.5681593,
+            "code": "GCT",
+            "name": "GHAZIPUR CITY"
+        },
+        {
+            "lat": 26.166667,
+            "lng": 85.416667,
+            "code": "MFP",
+            "name": "MUZAFFARPUR JN"
+        },
+        {
+            "lat": 26,
+            "lng": 83,
+            "code": "AMH",
+            "name": "AZAMGARH"
+        },
+        {
+            "lat": 40.1763985,
+            "lng": 68.8521506,
+            "code": "ZBD",
+            "name": "ZAFARABAD JN"
+        },
+        {
+            "lat": 28.58886,
+            "lng": 77.253766,
+            "code": "NZM",
+            "name": "HAZRAT NIZAMUDDIN"
+        },
+        {
+            "lat": 28.63551235,
+            "lng": 77.3214822317024,
+            "code": "SZM",
+            "name": "SUBZI MANDI"
+        },
+        {
+            "lat": 26.75,
+            "lng": 82,
+            "code": "FD",
+            "name": "FAIZABAD JN"
+        },
+        {
+            "lat": 27.1931416,
+            "lng": 83.1161288,
+            "code": "UB",
+            "name": "USKA BAZAR"
+        },
+        {
+            "lat": 25.1461346,
+            "lng": 82.5689952,
+            "code": "MZP",
+            "name": "MIRZAPUR"
+        },
+        {
+            "lat": 19.3581456,
+            "lng": 79.4823339,
+            "code": "SKZR",
+            "name": "SIRPUR KAGAZNGR"
+        },
+        {
+            "lat": 28.6711527,
+            "lng": 77.4120356,
+            "code": "GZB",
+            "name": "GHAZIABAD"
+        },
+        {
+            "lat": 28.6558115,
+            "lng": 77.2356623,
+            "code": "GB",
+            "name": "GAURI BAZAR"
+        },
+        {
+            "lat": 18.6732693,
+            "lng": 78.0978477,
+            "code": "NZB",
+            "name": "NIZAMABAD"
+        },
+        {
+            "lat": 29.44613615,
+            "lng": 77.5779801083643,
+            "code": "MOZ",
+            "name": "MUZAFFARNAGAR"
+        },
+        {
+            "lat": 30.55326025,
+            "lng": 74.2336867309882,
+            "code": "FZR",
+            "name": "FIROZPUR CANT"
+        },
+        {
+            "lat": 30.66596109999999,
+            "lng": 76.73968599999999,
+            "code": "SASN",
+            "name": "SAHIBZADA ASNGR"
+        },
+        {
+            "lat": 9.46214385,
+            "lng": 76.2842369263524,
+            "code": "ALLP",
+            "name": "ALAPPUZHA"
+        },
+        {
+            "lat": 27.1527986,
+            "lng": 78.3991439,
+            "code": "FZD",
+            "name": "FIROZABAD"
+        },
+        {
+            "lat": 23.8903906,
+            "lng": 85.3150201657408,
+            "code": "HZD",
+            "name": "HAZARIBAGH RD"
+        },
+        {
+            "lat": 25.4192773,
+            "lng": 83.5558636,
+            "code": "ZNA",
+            "name": "ZAMANIA"
+        },
+        {
+            "lat": 25.4348994,
+            "lng": 85.2912674,
+            "code": "DNWH",
+            "name": "DANIYAWAN BZR H"
+        },
+        {
+            "lat": 9.3772533,
+            "lng": 76.3577837,
+            "code": "AMPA",
+            "name": "AMBALA PUZHA"
+        },
+        {
+            "lat": 24.2385912,
+            "lng": 88.2561263,
+            "code": "AZ",
+            "name": "AZIMGANJ JN"
+        },
+        {
+            "lat": 27.1226,
+            "lng": 83.7604,
+            "code": "SBZ",
+            "name": "SISWA BAZAR"
+        },
+        {
+            "lat": 8.5570891,
+            "lng": 76.873005,
+            "code": "KZK",
+            "name": "KAZHAKUTTAM"
+        },
+        {
+            "lat": 16.7907012,
+            "lng": 80.8476103,
+            "code": "NZD",
+            "name": "NUZVID"
+        },
+        {
+            "lat": 43.0981838,
+            "lng": -3.1484103,
+            "code": "ROZA",
+            "name": "ROZA JN"
+        },
+        {
+            "lat": 25.5976709,
+            "lng": 85.2045341,
+            "code": "GZH",
+            "name": "GULZARBAGH"
+        },
+        {
+            "lat": 23.8423047,
+            "lng": 89.5150162,
+            "code": "NAZJ",
+            "name": "NAZIRGANJ"
+        },
+        {
+            "lat": 24.8137315,
+            "lng": 85.2316612,
+            "code": "WZJ",
+            "name": "WAZERGANJ"
+        },
+        {
+            "lat": 25.2257039,
+            "lng": 88.2000888,
+            "code": "GZO",
+            "name": "GAZOLE"
+        },
+        {
+            "lat": 25.2592408,
+            "lng": 87.4956857,
+            "code": "MZC",
+            "name": "MIRZA CHEUKI"
+        },
+        {
+            "lat": 24.1198815,
+            "lng": 88.2674686,
+            "code": "CSZ",
+            "name": "COSSIMBAZAR"
+        },
+        {
+            "lat": 23.8763244,
+            "lng": 88.1830584,
+            "code": "BZLE",
+            "name": "BAZARSAU"
+        },
+        {
+            "lat": 25.5559616,
+            "lng": 87.8527331,
+            "code": "AZR",
+            "name": "AZAMNAGAR ROAD"
+        },
+        {
+            "lat": 29.5817194,
+            "lng": 78.2191962,
+            "code": "MZM",
+            "name": "MUZZAMPUR NRYN"
+        },
+        {
+            "lat": 28.2906425,
+            "lng": 76.3916586,
+            "code": "DZB",
+            "name": "DAHINA ZAINABAD"
+        },
+        {
+            "lat": 28.6711527,
+            "lng": 77.4120356,
+            "code": "GZN",
+            "name": "N GHAZIABAD"
+        },
+        {
+            "lat": 30.4066889,
+            "lng": 74.0305245,
+            "code": "FKA",
+            "name": "FAZILKA"
+        },
+        {
+            "lat": 29.1585345,
+            "lng": 79.1463868,
+            "code": "BPZ",
+            "name": "BAZPUR"
+        },
+        {
+            "lat": 30.9614636,
+            "lng": 74.6016488,
+            "code": "FZP",
+            "name": "FIROZPUR CITY"
+        },
+        {
+            "lat": 8.7156305,
+            "lng": 76.8490328,
+            "code": "CRY",
+            "name": "CHIRAYINKEEZH"
+        },
+        {
+            "lat": 8.6102408,
+            "lng": 76.83461609999999,
+            "code": "MQU",
+            "name": "MURUKKAMPUZHA"
+        },
+        {
+            "lat": 10.840783,
+            "lng": 76.252275,
+            "code": "VPZ",
+            "name": "VAILAPUZHA"
+        },
+        {
+            "lat": 17.6786554,
+            "lng": 77.6074763,
+            "code": "ZB",
+            "name": "ZAHIRABAD"
+        },
+        {
+            "lat": 23.352474,
+            "lng": 80.9802002,
+            "code": "NRZB",
+            "name": "NOWROZABAD"
+        },
+        {
+            "lat": 21.2375703,
+            "lng": 77.7479366,
+            "code": "CNDB",
+            "name": "CHANDUR BAZAR"
+        },
+        {
+            "lat": -13.0062771,
+            "lng": -38.5245208,
+            "code": "BZB",
+            "name": "BARRA BAZAR"
+        },
+        {
+            "lat": 22.5943514,
+            "lng": 88.3548955,
+            "code": "SOLA",
+            "name": "SOVABAZAR-AHIRITOLA"
+        },
+        {
+            "lat": 22.6015868,
+            "lng": 88.3636559,
+            "code": "BBR",
+            "name": "BAG BAZAR"
+        },
+        {
+            "lat": 23.8009595,
+            "lng": 90.371843,
+            "code": "KZPR",
+            "name": "KAZIPARA"
+        },
+        {
+            "lat": 22.6583265,
+            "lng": 88.72176669999999,
+            "code": "KMZA",
+            "name": "KANKRA MIRZANGR"
+        },
+        {
+            "lat": 23.1384405,
+            "lng": 88.433018,
+            "code": "SOAE",
+            "name": "SOMRA BAZAR"
+        },
+        {
+            "lat": 22.79065,
+            "lng": 88.22213099999999,
+            "code": "MBE",
+            "name": "MIRZAPUR BNKIPR"
+        },
+        {
+            "lat": 22.9173792,
+            "lng": 88.1592765,
+            "code": "PBZ",
+            "name": "PORABAZAR"
+        },
+        {
+            "lat": 17.4841683,
+            "lng": 78.3602942,
+            "code": "HFZ",
+            "name": "HAFIZPETA"
+        },
+        {
+            "lat": 15.9482981,
+            "lng": 73.7339056,
+            "code": "ZARP",
+            "name": "ZARAP"
+        },
+        {
+            "lat": 28.6597744,
+            "lng": 77.2116326,
+            "code": "DSB",
+            "name": "SADAR BAZAR"
+        },
+        {
+            "lat": 28.7202154,
+            "lng": 77.30364829999999,
+            "code": "BHHZ",
+            "name": "BEHTA HAZIPUR HALT"
+        },
+        {
+            "lat": 27.9224151,
+            "lng": 79.887197,
+            "code": "SZN",
+            "name": "SHAHBAZNAGAR"
+        },
+        {
+            "lat": 28.150243,
+            "lng": 79.862754,
+            "code": "VZPH",
+            "name": "VAZEERPUR HALT"
+        },
+        {
+            "lat": 28.1916461,
+            "lng": 79.8494664,
+            "code": "ZNP",
+            "name": "ZINDPURA"
+        },
+        {
+            "lat": 24.2385912,
+            "lng": 88.2561263,
+            "code": "ACLE",
+            "name": "AZIMGANJ CITY"
+        },
+        {
+            "lat": 23.9060866,
+            "lng": 88.1880864,
+            "code": "KZPE",
+            "name": "KAZIPARA HALT"
+        },
+        {
+            "lat": 25.5498426,
+            "lng": 85.1191409,
+            "code": "PRBZ",
+            "name": "PARSA BAZAR"
+        },
+        {
+            "lat": 23.9913521,
+            "lng": 85.3627839,
+            "code": "HZBN",
+            "name": "HAZARIBAGH TOWN"
+        },
+        {
+            "lat": 28.3254249,
+            "lng": 76.0975573,
+            "code": "ZP",
+            "name": "ZARPUR PALI"
+        },
+        {
+            "lat": 28.5103735,
+            "lng": 75.7311086,
+            "code": "PVZ",
+            "name": "PARVEZPUR"
+        },
+        {
+            "lat": 28.3949298,
+            "lng": 77.6270967,
+            "code": "HZR",
+            "name": "HAFIZPUR"
+        },
+        {
+            "lat": 29.080916,
+            "lng": 76.4282645,
+            "code": "KZH",
+            "name": "KILA ZAFARGARH"
+        },
+        {
+            "lat": null,
+            "lng": null,
+            "code": "GZS",
+            "name": "GZ SANDHWAN"
+        },
+        {
+            "lat": 30.8794539,
+            "lng": 74.7876219,
+            "code": "PHS",
+            "name": "FEROZESHAH"
+        },
+        {
+            "lat": 28.7438389,
+            "lng": 79.0673302,
+            "code": "SAR",
+            "name": "SHAHZAD NAGAR"
+        },
+        {
+            "lat": 26.045164,
+            "lng": 81.097698,
+            "code": "BRRZ",
+            "name": "BARARA BUZURG"
+        },
+        {
+            "lat": 26.7939804,
+            "lng": 81.7376778,
+            "code": "RZN",
+            "name": "RAUZAGAON"
+        },
+        {
+            "lat": 29.5932275,
+            "lng": 78.2775051,
+            "code": "FZL",
+            "name": "FAZALPUR"
+        },
+        {
+            "lat": 25.266785,
+            "lng": 84.34996699999999,
+            "code": "HSB",
+            "name": "HASAN BAZAR HALT"
+        },
+        {
+            "lat": 28.7070686,
+            "lng": 77.1803831,
+            "code": "DAZ",
+            "name": "DELHI AZADPUR"
+        },
+        {
+            "lat": 29.6134274,
+            "lng": 76.9651765,
+            "code": "BZJT",
+            "name": "BAZIDA JATAN"
+        },
+        {
+            "lat": 30.1152478,
+            "lng": 76.8570343,
+            "code": "DHMZ",
+            "name": "DHOLA MAZRA"
+        },
+        {
+            "lat": 30.1528694,
+            "lng": 77.1963533,
+            "code": "DZP",
+            "name": "DARAZPUR"
+        },
+        {
+            "lat": 29.7704954,
+            "lng": 77.66363439999999,
+            "code": "THJ",
+            "name": "TALHERI BUZURG"
+        },
+        {
+            "lat": 27.957778,
+            "lng": 78.10111429999999,
+            "code": "MZGI",
+            "name": "MANZURGARHI"
+        },
+        {
+            "lat": 10.2218376,
+            "lng": -64.6351128,
+            "code": "CHBR",
+            "name": "CHAURE BAZAR"
+        },
+        {
+            "lat": 28.632656,
+            "lng": 78.67351099999999,
+            "code": "HZN",
+            "name": "HAZRAT NAGAR HALT"
+        },
+        {
+            "lat": 28.662419,
+            "lng": 77.231786,
+            "code": "ZPR",
+            "name": "ZORAWAR PURA HALT"
+        },
+        {
+            "lat": 26.486409,
+            "lng": 84.383347,
+            "code": "NKBR",
+            "name": "NARKATIA BAZAR HALT"
+        },
+        {
+            "lat": 25.6309942,
+            "lng": 83.67074629999999,
+            "code": "SBK",
+            "name": "SHAHBAZ KULI"
+        },
+        {
+            "lat": 25.5999461,
+            "lng": 83.6046472,
+            "code": "GZT",
+            "name": "GHAZIPUR GHAT"
+        },
+        {
+            "lat": 27.4252474,
+            "lng": 82.9298419,
+            "code": "MHBZ",
+            "name": "MAHTHA BAZAR"
+        },
+        {
+            "lat": 27.4817713,
+            "lng": 82.8438663,
+            "code": "MHBG",
+            "name": "MAHADEVA BUZRUG"
+        },
+        {
+            "lat": 26.2840111,
+            "lng": 83.7308963,
+            "code": "BHJ",
+            "name": "BARHAJ BAZAR"
+        },
+        {
+            "lat": 28.3888625,
+            "lng": 79.4211969935016,
+            "code": "IZN",
+            "name": "IZZATNAGAR"
+        },
+        {
+            "lat": 25.3442458,
+            "lng": 88.630823,
+            "code": "RMPB",
+            "name": "RAMPUR BAZAR"
+        },
+        {
+            "lat": 18.0177352,
+            "lng": 78.41479249999999,
+            "code": "MZL",
+            "name": "MIRZAPALI"
+        },
+        {
+            "lat": 25.6611546,
+            "lng": 85.4550344,
+            "code": "SDG",
+            "name": "SAHADAI BUZURG"
+        },
+        {
+            "lat": 49.1736833,
+            "lng": 4.4648484,
+            "code": "LB",
+            "name": "LAIN BAZAR"
+        },
+        {
+            "lat": 26.4773729,
+            "lng": 84.2345424,
+            "code": "BHBR",
+            "name": "BATHUA BAZAR"
+        },
+        {
+            "lat": 26.4558967,
+            "lng": 92.4806339,
+            "code": "DBZ",
+            "name": "DHING BAZAR"
+        },
+        {
+            "lat": 24.629159,
+            "lng": 92.32248299999999,
+            "code": "KNBR",
+            "name": "KANAIBAZAR"
+        },
+        {
+            "lat": 24.7442587,
+            "lng": 92.3501569,
+            "code": "NLBR",
+            "name": "NILAMBAZAR"
+        },
+        {
+            "lat": 22.572441,
+            "lng": 88.3518718,
+            "code": "LLBR",
+            "name": "LALBAZAR"
+        },
+        {
+            "lat": 24.610359,
+            "lng": 92.396754,
+            "code": "BZGT",
+            "name": "BAZURGHAT"
+        },
+        {
+            "lat": 26.485734,
+            "lng": 91.2219536,
+            "code": "NSRH",
+            "name": "NIZ-SARIHA-HALT"
+        },
+        {
+            "lat": 33.7696832,
+            "lng": 72.391583,
+            "code": "MRZA",
+            "name": "MIRZA"
+        },
+        {
+            "lat": 42.069156,
+            "lng": -0.0311466,
+            "code": "AZA",
+            "name": "AZARA"
+        },
+        {
+            "lat": 26.747949,
+            "lng": 93.04761599999999,
+            "code": "NCA",
+            "name": "NIZCHATIA"
+        },
+        {
+            "lat": 26.8458664,
+            "lng": 93.3023709,
+            "code": "NBX",
+            "name": "NIZBARGANJ"
+        },
+        {
+            "lat": 26.8861024,
+            "lng": 94.6889945,
+            "code": "MZA",
+            "name": "MEZENGA S"
+        },
+        {
+            "lat": 26.9112643,
+            "lng": 94.7311935,
+            "code": "NZR",
+            "name": "NAZIRA"
+        },
+        {
+            "lat": 40.7423309,
+            "lng": -75.3112095,
+            "code": "NZT",
+            "name": "NAZARETH"
+        },
+        {
+            "lat": 12.5321066,
+            "lng": 79.911518,
+            "code": "KGZ",
+            "name": "KARUNGUZHI"
+        },
+        {
+            "lat": 12.368915,
+            "lng": 79.7847371,
+            "code": "TZD",
+            "name": "TOZHUPPEDU"
+        },
+        {
+            "lat": 9.3706608,
+            "lng": 76.4114733,
+            "code": "TZH",
+            "name": "TAKAZHI"
+        },
+        {
+            "lat": 9.6424519,
+            "lng": 76.3265293,
+            "code": "TRVZ",
+            "name": "TIRUVIZHA"
+        },
+        {
+            "lat": 9.819891,
+            "lng": 76.302095,
+            "code": "EZP",
+            "name": "EZHUPPUNNA"
+        },
+        {
+            "lat": 8.6341912,
+            "lng": 76.8070831,
+            "code": "PGZ",
+            "name": "PERUNGUZHI"
+        },
+        {
+            "lat": 8.980645,
+            "lng": 76.719235,
+            "code": "EKN",
+            "name": "EZHUKONE"
+        },
+        {
+            "lat": 13.3269256,
+            "lng": 79.0365243,
+            "code": "GZL",
+            "name": "GAZULAPALLI"
+        },
+        {
+            "lat": 13.243747,
+            "lng": 78.7397432,
+            "code": "ZPL",
+            "name": "ZANGALAPALLE"
+        },
+        {
+            "lat": 10.7547932,
+            "lng": 79.7437158,
+            "code": "KVL",
+            "name": "KIZHVELUR"
+        },
+        {
+            "lat": 8.952699299999999,
+            "lng": 77.3228529,
+            "code": "KYZ",
+            "name": "KIZHA PULIYUR"
+        },
+        {
+            "lat": 8.7875782,
+            "lng": 77.3767097,
+            "code": "AZK",
+            "name": "AZHWARKURICHI"
+        },
+        {
+            "lat": 8.7506719,
+            "lng": 77.399298,
+            "code": "KIB",
+            "name": "KIZHA AMBUR"
+        },
+        {
+            "lat": 17.9776571,
+            "lng": 79.52464379999999,
+            "code": "KZJF",
+            "name": "KAZIPET F CABIN"
+        },
+        {
+            "lat": 17.4401311,
+            "lng": 78.4824022,
+            "code": "BOZ",
+            "name": "BOLARUM BAZAR"
+        },
+        {
+            "lat": 18.5699361,
+            "lng": 73.8506427,
+            "code": "KDBR",
+            "name": "KHADKI BAZAR"
+        },
+        {
+            "lat": 16.1995351,
+            "lng": 80.7144284,
+            "code": "ZPI",
+            "name": "ZAMPANI HALT"
+        },
+        {
+            "lat": 21.3359365,
+            "lng": 86.7615438,
+            "code": "BNBR",
+            "name": "BAHANAGA BAZAR"
+        },
+        {
+            "lat": 20.847837,
+            "lng": 78.7984361,
+            "code": "KEZ",
+            "name": "KELZAR"
+        },
+        {
+            "lat": 20.612723,
+            "lng": 79.921553,
+            "code": "CCBG",
+            "name": "CHICHOLI BUZURG"
+        },
+        {
+            "lat": 21.5501292,
+            "lng": 79.6939874,
+            "code": "DGBZ",
+            "name": "DONGRI BUZURG"
+        },
+        {
+            "lat": 21.1090118,
+            "lng": 79.2307301,
+            "code": "DGY",
+            "name": "DIGHORI BUZURG"
+        },
+        {
+            "lat": 18.3185649,
+            "lng": 73.3010913,
+            "code": "NIP",
+            "name": "NIZAMPUR"
+        },
+        {
+            "lat": 28.0913473,
+            "lng": 76.20010839999999,
+            "code": "MBV",
+            "name": "MIRZAPUR BCHAUD"
+        },
+        {
+            "lat": 28.5889188,
+            "lng": 77.2534726,
+            "code": "HNZM",
+            "name": "HAZRAT NIZAMUDIN"
+        },
+        {
+            "lat": 28.6252841,
+            "lng": 77.45011819999999,
+            "code": "CYZ",
+            "name": "CHIPYANA BUZURG"
+        },
+        {
+            "lat": 30.6325028,
+            "lng": 76.1537373,
+            "code": "FYZ",
+            "name": "FAIZULLAPUR"
+        },
+        {
+            "lat": 33.5885151,
+            "lng": 75.1577669,
+            "code": "QG",
+            "name": "QUAZIGUND"
+        },
+        {
+            "lat": 34.1105362,
+            "lng": 74.61908989999999,
+            "code": "MZMA",
+            "name": "MAZHOM"
+        },
+        {
+            "lat": 42.38009555,
+            "lng": 59.6337635665679,
+            "code": "MLBZ",
+            "name": "MAL BAZAR"
+        },
+        {
+            "lat": 17.9830676,
+            "lng": 79.5189651,
+            "code": "KZJE",
+            "name": "KZJ E CABIN"
+        },
+        {
+            "lat": -3.7470886,
+            "lng": -38.5533460694623,
+            "code": "SRBZ",
+            "name": "SEHARA BAZAR"
+        },
+        {
+            "lat": 24.7452571,
+            "lng": 78.8341926,
+            "code": "NZG",
+            "name": "NAZARBAG"
+        },
+        {
+            "lat": 15.3494566,
+            "lng": 74.278923,
+            "code": "CRZ",
+            "name": "CARANZOL"
         }
-    ],
-    "to_station": {
-        "code": "NDLS",
-        "lat": 28.6141793,
-        "name": "NEW DELHI",
-        "lng": 77.2022662
-    },
-    "quota": {
-        "code": "GN",
-        "name": "GENERAL QUOTA"
-    },
-    "journey_class": {
-        "code": "CC",
-        "name": "AC CHAIR CAR"
-    }
-}

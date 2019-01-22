@@ -1,0 +1,208 @@
+<div class="div1">
+  <h1 align="center">Check Train Fare</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getTrainFare()">
+    <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+                [matAutocomplete]="auto"
+                id=train 
+                #trainNumber="ngModel" 
+                name="trainNumber" 
+                [(ngModel)]="search.trainNumber" 
+                (keyup)="getTrains($event)"
+                (blur)="getSourceStationCodes($event.target.value)"
+                matInput 
+                placeholder="Enter Train Number or Name" 
+                required>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of trainsList"  [value]= "option.number">
+              {{option.number}} - {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+          <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+      </div>
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">
+        Enter valid Train number
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+          <input 
+          matInput [min]="minDate" 
+          [max]="maxDate" 
+          [matDatepicker]="picker" 
+          placeholder="Choose a date" 
+          name="date" [(ngModel)]="myDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+       <div>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Source Station" 
+              (change)="setDestCodes()" id=srcCode #srcCode="ngModel" name="srcCode" 
+              [(ngModel)]="search.srcCode">
+              <mat-option *ngFor="let item of sourceStationsList" [value]="item.station.code">
+                {{item.station.code}} - {{ item.station.name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Destination Station" 
+              id=dstCode #dstCode="ngModel" name="dstCode" 
+              [(ngModel)]="search.dstCode">
+              <mat-option *ngFor="let item of destinationStationsList" [value]="item.station.code">
+                {{item.station.code}} - {{ item.station.name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          id=train #age="ngModel" name="age" 
+            [(ngModel)]="search.age"
+            matInput placeholder="Enter Age" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Class" 
+              #classCode="ngModel" name="classCode" 
+              [(ngModel)]="search.classCode">
+              <mat-option *ngFor="let class of classes" [value]="class.value">
+                {{class.value}} - {{ class.name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Quota" 
+              #quota="ngModel" name="quota"
+              [(ngModel)]="search.quota">
+              <mat-option *ngFor="let item of quotas" [value]="item.value">
+                {{item.value}} - {{ item.name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-raised-button color="warn">Check Train Fare</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
+    </div>
+  </form>
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h4>Check train fare for your journey:</h4>
+          <p>To plan your journey properly, sometimes it’s important to <strong>check fare details</strong> for the journey you are going to do. It is not always possible to login to your irctc account to check fare details and it takes time. For that, to check fare details at <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a> is simple and easy. </p>
+          
+          <h4>How to check Train Fare:</h4>
+          <p>Following is the simple steps that you need to do to check train fare details.</p>
+          <ol>
+            <li>Visit <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on <strong>TRAIN DETAILS</strong> drop down, and then click on <strong>TRAIN FARE</strong>.
+            </li>
+            <li>Enter Train number or Name
+            </li>
+            <li>Choose your journey Date
+            </li>
+            <li>Choose source station
+            </li>
+            <li>Choose destination station
+            </li>
+            <li>Enter your age
+            </li>
+            <li>Choose Class that you would to do your journey
+            </li>
+            <li>Chose Quota
+            </li>
+            <li>Click on <strong>“CHECK TRAIN FARE”</strong>
+            </li>
+          </ol>
+          <p>That’s it; this is how simple to get the train fare details to plan your journey.</p>
+          <h4>Highest fare classes:</h4>
+          <p>Train journey is boon for many people of you travel in sleeper and third ac classes. In the same way, train classes like Executive Class, First AC, First Class, AC 2 tier sleeper are too costly. These class train fares reach almost the Flight fares.</p>
+          <p>Indian railways recently introduced EA class that are Anubhiti Coaches which are attached in some of the shatabdi trains. Ticket fare for this class is highest and generally is 1.2 times the fare of executive class. Indian railways follow different pricing structure for different trains. Indian railway has premium trains which are Rajdhani, shatabdi and duranto. For these trains, it follows dynamic pricing, which means the fare of the ticket increases dynamically as the number of available seats decreases. While, for all the remaining trains like superfast, expresses, double decker and passengers the train fares are remaining same for all the time irrespective of seats available.</p>
+          <p>Following is the order of the classes based on the ticket fares.</p>
+          <p><strong>EA>1A>EC>2A>FC>3A>CC>SL>2S</strong></p>
+          <p><strong>EA:</strong> Anubhuti Class</p>
+          <p><strong>1A:</strong> First AC</p>
+          <p><strong>EC:</strong> Executive Class</p>
+          <p><strong>2A:</strong> AC 2 tier sleeper</p>
+          <p><strong>FC:</strong> First Class</p>
+          <p><strong>3A:</strong> AC 3 tier</p>
+          <p><strong>CC:</strong> AC Chair Car</p>
+          <p><strong>SL:</strong> Sleeper Class</p>
+          <p><strong>2S:</strong> Second Sitting</p>
+          <h4>How to avail concession fare for tickets:</h4>
+          <p>Indian Railways provides tickets under concession fare for few categories. Generally concession fare tickets will be provided to Disabled passengers,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                travelling alone, Senior citizens, Awardees, students, artists, sports person and war windows. In www.railwayenquiry.net you will get the exact fare details once you select the class and quota.</p>
+          <h4>How Train Fare calculated:</h4>
+          <p>Indian Railways generally calculates train ticket based on per kilometre (KM). The total fare of the ticket contains many components. These components are base fare, reservation charges, superfast chargers and few more. </p>
+          <p>The total ticket fare is calculated as follows.</p>
+          <p>Total ticket fare = Base Fare + Reservation Charges + Superfast Charges + Catering Charge + Dynamic Fare + GST</p>
+          <p>The total ticket fare is based on the components which are applicable to your train, class and quota will be added up. </p>
+          <ul>
+            <li><strong>Base Fare: </strong>Indian Railway decides the base fare based on the kilometres run by the train. Base fare is not same for all the classes.</li>
+            <li><strong>Reservation charges: </strong> Reservation charges are not same for all the classes. It is different for each class. </li>
+          
+           <table>
+            <tr>
+              <td>Class</td>
+              <td>1A</td>
+              <td>EC</td>
+              <td>2A</td>
+              <td>3A</td>
+              <td>CC</td>
+              <td>SL</td>
+              <td>2S</td>
+            </tr>
+            <tr>
+              <td>Reservation Charge</td>
+              <td>60</td>
+              <td>60</td>
+              <td>50</td>
+              <td>40</td>
+              <td>40</td>
+              <td>20</td>
+              <td>15</td>
+            </tr>
+          </table> 
+          <li><strong>Superfast Charges: </strong>This is not applicable for all the trains. Its applicable for superfast trains. It is different for each class.</li>
+        <table>
+            <tr>
+              <td>Class</td>
+              <td>1A</td>
+              <td>EC</td>
+              <td>2A</td>
+              <td>3A</td>
+              <td>CC</td>
+              <td>SL</td>
+              <td>2S</td>
+            </tr>
+            <tr>
+              <td>Reservation Charge</td>
+              <td>60</td>
+              <td>60</td>
+              <td>50</td>
+              <td>40</td>
+              <td>40</td>
+              <td>20</td>
+              <td>15</td>
+            </tr>
+          </table> 
+          <li><strong>Catering Charges: </strong>Indian railways provide on board catering services to few trains. Premium trains like Rajdhani, Shatabdi and doranto serves food in the train. Food like tea, breakfast, lunch, evening snack and dinner will be provided in these trains. The fare for this food is different for each class and each food.</li>
+          </ul>
+    </mat-card>
+</div>
+  <br> 
+  <div align="center">
+	<app-google-ad-300-250></app-google-ad-300-250>
+</div>
+</div>

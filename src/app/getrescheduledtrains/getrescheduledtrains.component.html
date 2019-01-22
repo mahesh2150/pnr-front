@@ -1,0 +1,43 @@
+
+<div class="div1" style="text-align: center;">
+  <h2><span>{{dataSource.length}} Trains Rescheduled on {{search.date}}</span></h2>
+  <app-google-ad-300-250></app-google-ad-300-250>
+  <div  class="example-container mat-elevation-z8" style="margin-top: 50px;">
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="no">
+          <mat-header-cell *matHeaderCellDef>No</mat-header-cell>
+          <mat-cell *matCellDef="let element;let i = index;">{{i+1}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Trains">
+          <mat-header-cell *matHeaderCellDef>Trains</mat-header-cell>
+          <mat-cell *matCellDef="let element"><a href="/indian-train-routes/{{element.number}}" target="_blank">{{element.number}}</a><br><span>{{element.name}}</span></mat-cell>
+        </ng-container>
+       <ng-container matColumnDef="src">
+          <mat-header-cell *matHeaderCellDef>Source</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.from_station.code}} - {{element.from_station.name}}</mat-cell>          <!-- <mat-cell *matCellDef="let element"> {{element.actdep}} </mat-cell> -->
+        </ng-container>
+        <ng-container matColumnDef="dst">
+          <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.to_station.code}} - {{element.to_station.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="res_time">
+          <mat-header-cell *matHeaderCellDef>Rescheduled Time</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.rescheduled_time}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="res_date">
+          <mat-header-cell *matHeaderCellDef>Rescheduled Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.rescheduled_date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="time_diff">
+          <mat-header-cell *matHeaderCellDef>Time Difference</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.time_diff}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+  </div>
+     <div align="center">
+    <app-google-ad-300-250></app-google-ad-300-250>
+  </div>
+</div>

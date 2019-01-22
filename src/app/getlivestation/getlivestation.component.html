@@ -1,0 +1,77 @@
+
+<div class="div1" style="text-align: center;">
+  <form #myForm="ngForm"  (ngSubmit)="getTrains()">
+    <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto"
+          id=train #srcCode="ngModel" name="srcCode" 
+            [(ngModel)]="search.srcCode"
+            (keyup)="getStations($event.target.value)"
+            matInput placeholder="Enter Source Station" required>
+           <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of stationsList" [value]= "option.code">
+              {{option.code}} - {{ option.name }}
+            </mat-option>
+           </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="alert alert-danger" *ngIf="srcCode.touched && !srcCode.valid ">
+                         <div *ngIf="srcCode.errors.required">Enter Source Station</div>                 
+      </div>
+      <!-- <div *ngIf="show_enter_valid_srcCode" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter Valid Source Station Code</div>                 -->
+      <div>
+        <mat-radio-group name = "hours" [(ngModel)]="search.hours">
+          <mat-radio-button value="2">2 Hrs</mat-radio-button>
+          <mat-radio-button value="4">4 Hrs</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div style="margin-top:10px;">
+      <button type="submit" mat-raised-button color="warn">Search</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
+      </div>    
+    </div>
+  </form>
+   <div *ngIf="show_spinner" align="center"> 
+        <mat-spinner color="warn"></mat-spinner>
+      </div> 
+  <div *ngIf="show_livestation_table">
+  <h2><span>{{total}} Trains departing from/arriving at {{search.srcCode | uppercase}} in next {{search.hours}} Hrs.</span></h2>
+  <div  class="example-container mat-elevation-z8" style="margin-top: 50px;">
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="no">
+          <mat-header-cell *matHeaderCellDef>No</mat-header-cell>
+          <mat-cell *matCellDef="let element;let i = index;">{{i+1}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Trains">
+          <mat-header-cell *matHeaderCellDef>Trains</mat-header-cell>
+          <mat-cell *matCellDef="let element"><a href="/indian-train-routes/{{element.number}}" target="_blank">{{element.number}}</a><br><span>{{element.name}}</span></mat-cell>
+        </ng-container>
+       <ng-container matColumnDef="scheduled">
+          <mat-header-cell *matHeaderCellDef>Scheduled Time</mat-header-cell>
+      <mat-cell *matCellDef="let element"><span style="color:gray">Arr:  </span>{{element.scharr}}<br><span style="color:gray">Dep: </span>{{element.schdep}}</mat-cell>          <!-- <mat-cell *matCellDef="let element"> {{element.actdep}} </mat-cell> -->
+        </ng-container>
+        <ng-container matColumnDef="actual">
+          <mat-header-cell *matHeaderCellDef>Actual Time</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.actarr}}<br>{{element.actdep}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="delay">
+          <mat-header-cell *matHeaderCellDef>Delay Time</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.delayarr}}<br>{{element.delaydep}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  </div>
+    <br>
+    <app-google-ad-300-250></app-google-ad-300-250>
+  <div>
+   <mat-card class="example-card">
+          <h4>{{search.srcCode | uppercase}} Live Station</h4>
+          <p>know details about all the trains that arrives and departs from {{search.srcCode}}. Suppose, if you are in {{search.srcCode}} station and you want to know all the trains that pass from that station within a window period, Railway Enquiry is here for you. </p>
+    </mat-card>
+</div>
+  <br>
+  </div>
+</div>

@@ -1,20 +1,192 @@
- <div class="main_div">
-    <div align="center" class="pnr_div">
-        <form #myForm="ngForm"  (ngSubmit)="getPNR()">
-            <mat-form-field class="example-full-width" > 
-                    <input type="text"  pattern="[0-9]*" class="form-control" id=pnr name="pnrnumber" minlength="10" maxlength="10" #pnrNumber="ngModel" [(ngModel)]="pnrnumber.pnr" matInput placeholder="Enter PNR Number" required>  
-            </mat-form-field>
-            <button type="submit" mat-raised-button color="warn" >Get PNR Status</button>
-            <div class="alert alert-danger" *ngIf="pnrNumber.touched && !pnrNumber.valid">
-                      <div *ngIf="pnrNumber.errors.required">Enter PNR number</div>
-                      <div *ngIf="pnrNumber.errors.minlength">PNR number should be 10 digits</div>
-                      <div *ngIf="pnrNumber.errors.pattern">PNR number should be only numbers</div>
-            </div>
-         </form>
-    </div>
+<div align="center" class="pnr_div">
+      <mat-tab-group mat-stretch-tabs>
+            <mat-tab label="SEAT AVAILABILITY"> 
+                  <form #myForm="ngForm"  (ngSubmit)="getSeatAvailability()">
+                        <div class="example-container" align="center">
+                              <div>
+                                    <mat-form-field class="example-full-width" >
+                                          <input class="form-control"
+                                          [matAutocomplete]="auto"
+                                          id=train 
+                                          #trainNumber="ngModel" 
+                                          name="trainNumber" 
+                                          [(ngModel)]="search.trainNumber" 
+                                          (keyup)="getTrains($event)"
+                                          matInput 
+                                          placeholder="Enter Train Number or Name" 
+                                          required>
+                                          <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+                                                {{option.number}} - {{ option.name }}
+                                                </mat-option>
+                                          </mat-autocomplete>
+                                    </mat-form-field>
+                                    <button type="submit" mat-raised-button color="warn">Check Seat Availability</button>
+                                    <app-google-ad-300-250></app-google-ad-300-250>
+                              </div>
+                              <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+                                    <div *ngIf="trainNumber.errors.required">Enter Train number</div> 
+                                    <div *ngIf="trainNumber.errors.minlength">Train number should be 5 digits</div>                
+                              </div>
+                              <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">
+                                    Enter valid Train number
+                              </div>
+                        </div>
+                  </form>
+            </mat-tab>
+            <mat-tab label="PNR"> 
+                   <form #myForm="ngForm"  (ngSubmit)="getPNR()">
+                        <mat-form-field class="example-full-width" > 
+                              <input type="text"  pattern="[0-9]*" class="form-control" id=pnr name="pnrnumber" minlength="10" maxlength="10" #pnrNumber="ngModel" [(ngModel)]="pnrnumber.pnr" matInput placeholder="Enter PNR Number" required>  
+                        </mat-form-field>
+                        <button type="submit" mat-raised-button color="warn" >Get PNR Status</button>
+                        <app-google-ad-300-250 ></app-google-ad-300-250>
+                        <div class="alert alert-danger" *ngIf="pnrNumber.touched && !pnrNumber.valid">
+                              <div *ngIf="pnrNumber.errors.required">Enter PNR number</div>
+                              <div *ngIf="pnrNumber.errors.minlength">PNR number should be 10 digits</div>
+                              <div *ngIf="pnrNumber.errors.pattern">PNR number should be only numbers</div>
+                        </div>
+                  </form> 
+            </mat-tab>  
+      </mat-tab-group>
+   
  </div>
- 
- 
- 
- 
+ <div class="welcome" align="center">
+      <h1>Welcome to Railway Enquiry</h1>
+</div> 
+<div class="divrow" align="center"> 
 
+      <a href="/indian-train-routes" target="_blank">
+            <mat-card class="matrow">
+                  
+                       <div align="center"> <img class="img_width" src="assets/time_table.PNG" >
+                     </div> 
+                     <h4>TimeTables</h4>
+                     <p>Full train routes, timings and schedule of Indian Railways.</p> 
+                 
+            </mat-card>
+       </a>
+      <a href="/train-seat-availability" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/seat_availability.PNG">
+                     </div> 
+                     <h4>Seat Availability</h4>
+                     <p>Check Current Train Seat Availability in Indian Railways.</p>
+            </mat-card>
+      </a>
+      <a href="/train-live-running-status" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/spot_your_train.PNG">
+                     </div> 
+                     <h4>Spot Your Train</h4>
+                     <p>Check Current Train Seat Availability in Indian Railways.</p>
+            </mat-card>
+      </a>
+             
+      <a href="/running-trains-between-stations" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/trains_between_station.PNG">
+                     </div> 
+                     <h4>Trains Between Stations</h4>
+                     <p>Find Running Trains Between Stations</p>
+            </mat-card> 
+      </a> 
+      <a href="/live-station" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/live_station.PNG">
+                     </div> 
+                     <h4>Live Station</h4>
+                     <p>Live arrivals & departures at any Station</p>
+            </mat-card>
+      </a>
+      <a href="/train-fare-enquiry" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/fares.PNG">
+                     </div> 
+                     <h4>Fares</h4>
+                     <p>Indian railways dynamic fare breakup</p>
+            </mat-card>
+      </a>
+      <a href="/check-cancelled-trains" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/cancelled_trains.PNG">
+                     </div> 
+                     <h4>Cancelled Trains</h4>
+                     <p>Check Indian Railways Cancelled Trains Today</p>
+            </mat-card>
+      </a>
+      <a href="/check-rescheduled-trains" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/rescheduled_trains.PNG">
+                     </div> 
+                     <h4>Rescheduled Trains</h4>
+                     <p>Check Indian Railways Rescheduled Today</p>
+            </mat-card>
+      </a>
+      <a href="/contact-us.html" target="_blank">
+            <mat-card class="matrow">
+                      <div align="center"> <img class="img_width" src="assets/support.PNG">
+                     </div> 
+                     <h4>Support</h4>
+                     <p>Our Railway Enquiry experts provide comprehensive support</p>
+            </mat-card>
+      </a>
+ </div>
+<div id="mobile_list">
+      <ul style="list-style: none; text-align: center;padding-left:0px;">
+         <a href="/indian-train-routes" target="_blank">
+            <li class="li_class">
+                  <img src="assets/03.PNG" >
+                  <label>Time table</label>
+            </li>
+         </a>
+         <a href="/train-seat-availability" target="_blank">
+            <li class="li_class">
+                  <img src="assets/04.PNG" >
+                  <label>Seat Availability</label>
+            </li>
+         </a>
+         <a href="/train-live-running-status" target="_blank">
+            <li class="li_class">
+                  <img src="assets/02.PNG" >
+                  <label>Spot Your Train</label>
+            </li>
+         </a>
+         <a href="/running-trains-between-stations" target="_blank">
+            <li class="li_class">
+                  <img src="assets/05.PNG" >
+                  <label>Trains B/W Stations</label>
+            </li>
+         </a>
+         <a href="/live-station" target="_blank">
+            <li class="li_class">
+                  <img src="assets/06.PNG" >
+                  <label>Live Station</label>
+            </li>
+         </a>   
+         <a href="/train-fare-enquiry" target="_blank">
+            <li class="li_class">
+                  <img src="assets/07.PNG" >
+                  <label>Fares</label>
+            </li>
+         </a>
+         <a href="/check-cancelled-trains" target="_blank">
+             <li class="li_class">
+                  <img src="assets/08.PNG" >
+                  <label>Cancelled Trains</label>
+            </li>
+         </a>
+         <a href="/check-rescheduled-trains" target="_blank">
+            <li class="li_class">
+                  <img src="assets/09.PNG" >
+                  <label>Rescheduled Trains</label>
+            </li>
+         </a>
+         <a href="/contact-us.html" target="_blank">
+            <li class="li_class">
+                  <img src="assets/10.PNG" >
+                  <label>Support</label>
+            </li>
+         </a>
+      </ul>
+</div>

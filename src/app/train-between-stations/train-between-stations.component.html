@@ -1,3 +1,109 @@
-<p>
-  train-between-stations works!
-</p>
+<div class="div1">
+  <h1 align="center">Check Trains Between Station</h1>
+  <form #myForm="ngForm"  (ngSubmit)="getTrains()">
+    <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto"
+          id=train #srcCode="ngModel" name="srcCode" 
+            [(ngModel)]="search.srcCode"
+            (keyup)="getStations($event.target.value)"
+            matInput placeholder="Enter Source Station" required>
+           <mat-autocomplete #auto="matAutocomplete" force-select>
+            <mat-option *ngFor="let option of stationsList" [value]= "option.code">
+              {{option.code}} - {{ option.name }}
+            </mat-option>
+           </mat-autocomplete>
+        </mat-form-field>
+       
+        <div class="alert alert-danger" *ngIf="srcCode.touched && !srcCode.valid ">
+                         <div *ngIf="srcCode.errors.required">Enter Source Station</div>     
+        </div>
+        <div *ngIf="show_enter_valid_srcCode" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter Valid Source Station Code</div>                
+      </div>
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto1"
+          id=train #dstCode="ngModel" name="dstCode" 
+            [(ngModel)]="search.dstCode"
+            (keyup)="getStations($event.target.value)"
+            matInput placeholder="Enter Destination Station" required>
+           <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let option of stationsList" [value]= "option.code">
+              {{option.code}} - {{ option.name }}
+            </mat-option>
+           </mat-autocomplete>
+          </mat-form-field>
+        <div class="alert alert-danger" *ngIf="dstCode.touched && !dstCode.valid ">
+                         <div *ngIf="dstCode.errors.required">Enter Destination Station</div>                 
+        </div>
+        <div *ngIf="show_enter_valid_dstCode" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter Valid Destination Station Code</div>                
+      </div>
+      <!-- <div>
+        <mat-form-field class="example-full-width">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="myDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+      <button type="submit" mat-raised-button color="warn">Search</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
+    </div>
+  </form>
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h3>Check Trains Between Stations at Railway Enquiry</h3>
+          <p>It is sometimes necessary for you to know the list of all available Trains between two stations or from your station to the other station where you want to reach. There are daily trains available between two stations but few special trains also available on a particular day in a week.</p>
+          <p>It would be better for you to check all the Indian railway trains between stations before booking tickets. By checking this, you will have an idea about in which train the seats are available. At Railway Enquiry you can <a href="https://railwayenquiry.net/train-seat-availability" target="_blank">check train seat availability</a> for any train. </p>
+          <h4>IRCTC trains between stations:</h4>
+          <p>At <a href="https://railwayenquiry.net/" target="_blank">Railway Enquiry</a> you can check train availability between two stations with following simple steps.</p>
+          <ol>
+            <li>Go to <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on “TRAINS B/W STATIONS”
+            </li>
+            <li>Enter Source station code.
+            </li>
+            <li>Enter Destination station code.
+            </li>
+            <li>Select the Date.
+            </li>
+          </ol>
+          <p>That’s it, the list of trains will be in front of you right in the screen. This is the simplest process available to search to the list of trains to between the stations.</p>
+          <p>The list shows, </p>
+          <ol>
+            <li>Train Number
+            </li>
+            <li>Train Name
+            </li>
+            <li>Departure time
+            </li>
+            <li>Arrival Time
+            </li>
+            <li>Travel Time.
+            </li>
+          </ol>
+          <p>Once you booked the train ticket and the ticket is on a waiting list, you can check <a href="https://railwayenquiry.net/check-pnr-status-online" target="_blank">PNR status</a>> at <a href="https://railwayenquiry.net/" target="_blank">Railway Enquiry</a>.</p>
+          <p>As a passenger, you might come through few questions while making irctc train enquiry between two stations. All questions are answered below.</p>
+          <h4>There are more than one station in a city, which station will I have to choose?</h4>
+          <p>There are many cities and towns in India which has two or more railway stations in it. It is always confuse to the passengers to search from which railway station. </p>
+          <p>You can select any station that shown in the search in your town, Railway Enquiry will give you the list of all the trains which starts from your station. </p>
+          <p>For an example, if you choose to see the list of trains available from Mumbai to Delhi, Railway Enquiry will show the list of all the trains between these two cities irrespective of the station you selected in Mumbai city. 
+          </p>
+          <p>If you don't want to waste time by reaching early for the railway station, you can check live train running status at Railway Enquiry by clicking <a href="https://railwayenquiry.net/train-live-running-status" target="_blank"> “Spot Your Train”</a> in the Menu bar.</p>
+          <p>Railway Enquiry suggests all the passengers to check trains between stations before booking their tickets. </p>
+          <h4>About Railway Enquiry:</h4>
+          <p>
+            <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a> is single point destination for all your enquiries about Indian Railways. You can check PNR Status, Train Live status, Train Schedule, Trains B/W Stations, Cancelled trains, Rescheduled Trains and many more about Indian Railways.  </p>
+          <p> Have any queries, contact us Here.</p>
+    </mat-card>
+</div>
+  <br>
+  <div align="center">
+    <app-google-ad-300-250></app-google-ad-300-250>
+  </div>
+</div>
+

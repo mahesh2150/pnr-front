@@ -1,47 +1,113 @@
 body{
-    background: url("../../assets/train5.jpg"); 
+    /*background: url("../../assets/train5.jpg"); */
      /* height:734px;  */
     background-size: cover;
     background-repeat: no-repeat;
     /* background-image: url(" https://www.wallpaperup.com/uploads/wallpapers/2013/08/20/136797/cae25dd3607cc9b121fd3ab51c393b00-700.jpg"); */
    
 }
+.img_width{
+    width:6vw;
+}
+
 
 .main_div{
  /* background: url("../../assets/train5.jpg");    */
     padding:40px;
-    min-height: 100vh;
+    min-height: 90vh;
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
 }
 
 .pnr_div{
+    margin-top:10vh;
+    margin-bottom:8vh;
+}
+.seat_availability_div{
+    margin-top:2vh;
+    margin-bottom:6vh;
+}
+ul > a{
+    text-decoration:none;
+    color: inherit;
+}
+.li_class{
+    width: 30%;
+    display: inline-block;
+    padding-bottom: 25px;
+}
+
+.li_class > img{
+    /* display: block;
+    width:52px; */
+        display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.li_class > {
+    display: inline-flex;
+}
+
+.li_class > label{
+    font-size: 12px;
+}
+
+#mobile_list{
+    display: none;
+}
+
+.welcome{
+    width: 100%;
+    /* background-color: #777777; */
+    color: black;
     margin-top:6vh;
+    /* margin-bottom:16vh; */
+    padding-top:6vh;
+    padding-bottom:6vh;
+}
+.divrow{
+    margin-left: 10%;
+    width:80%;
+}
+.matrow{
+    position: inherit;
+    display: inline-block;
+    width:24%;
+    margin-left:4%;
+    margin-bottom: 5%;
 }
 
-.example-full-width{
-    width: 40%;
-}
-/* 
-.main_container{
-    background: url("../../assets/train5.jpg");   
-    padding:40px;
-    min-height: 100vh;
-      // background: rgba(19, 18, 18, 0.726);  
-    color: white;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-} */
 
-/* @media only screen and (max-width: 576px) {
-.center {
-    text-align: center;
-}
 
-.btn {
-    margin-top:10px;
+
+@media (max-width: 767px) {
+    .img_width{
+        width: 12vw;
+    }
+}
+@media (max-width: 480px) {
+    .matrow{
+        width: 80%;
+        margin-bottom: 8%;
+    }
+    .divrow{
+        display: none;
+        margin-left:5%;
+        width:90%;
+    }
+    .img_width{
+        width: 30vw;
+    }
+    .welcome{
+        display: none;
+    }
+    .example-full-width, .mat-raised-button{
+        width: 80%;
+    }
+    #mobile_list{
+    display: block;
 }
 }
-  */

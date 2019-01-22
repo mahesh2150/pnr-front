@@ -1,75 +1,179 @@
+
 <div class="div1" style="text-align: center;">
-  <h2> Check Train <span *ngIf="show_train_details">{{statusResult.train.name}} {{statusResult.train.number}}</span> Seat Availability</h2>
-  <form #myForm="ngForm"  (ngSubmit)="getTrainRoute()">
-    <div class="example-container" >
-      <mat-form-field class="example-full-width" >
-        <input class="form-control"
-        [matAutocomplete]="auto"
-         id=train #trainNumber="ngModel" name="trainNumber" 
-           [(ngModel)]="search.trainNumber" 
-           (keyup)="getTrains($event.target.value)"
-           matInput placeholder="Enter Train Number or Name" required>
-           <!-- (keyup)="getTrains($event.target.value)" -->
-            <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of trainsList" [value]= "option.number">
-            {{option.number}} - {{ option.name }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <button type="submit" mat-raised-button color="warn">Check Seat Availability</button>
-      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
-                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+    <h2><span> Seat Availability for train <a *ngIf="!show_enter_valid_trainNumber" href="/indian-train-routes/{{search.trainNumber}}" target="_blank">{{search.trainNumber}}</a></span></h2>
+    <form #myForm="ngForm"  (ngSubmit)="getSeats()">
+      <div class="example-container" align="center">
+      <div>
+        <mat-form-field class="example-full-width" >
+          <input class="form-control"
+          [matAutocomplete]="auto"
+          id=train 
+          #trainNumber="ngModel" 
+          name="trainNumber" 
+          [(ngModel)]="search.trainNumber" 
+          (keyup)="getTrains($event)"
+          (change)="getSourceStationCodes()"
+          matInput 
+          placeholder="Enter Train Number or Name" 
+          required>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of trainsList" [value]= "option.number">
+              {{option.number}} - {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input 
+          matInput [min]="minDate" 
+          [max]="maxDate" 
+          [matDatepicker]="picker" 
+          placeholder="Choose a date" 
+          name="date" [(ngModel)]="myDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
       </div>
-      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" >Enter valid Train number</div>
-      
-    </div> 
-    <div *ngIf="show_spinner" align="center"> 
-        <mat-spinner color="warn"></mat-spinner>
+      <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
+          <div *ngIf="trainNumber.errors.required">Enter Train number</div> 
+          <div *ngIf="trainNumber.errors.minlength">Train number should be 5 digits</div>                
+       </div> 
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">
+        Enter valid Train number
+       </div>
+      <div>
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Source Station" 
+              (change)="setDestCodes()" id=srcCode
+              [(ngModel)]="srcSelected"
+              #srcCode="ngModel" 
+              name="srcCode" >
+              <mat-option *ngFor="let item of sourceStationsList" [value]="item.station.code">
+                {{item.station.code}} - {{ item.station.name }}
+              </mat-option>
+          
+            </mat-select>
+        </mat-form-field>
+      <!-- </div>
+      <div> -->
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Destination Station" 
+              id=dstCode #dstCode="ngModel" name="dstCode" 
+              [(ngModel)]="dstSelected">
+              <mat-option *ngFor="let item of destinationStationsList" [value]="item.station.code">
+                {{item.station.code}} - {{ item.station.name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field  class="example-full-width">
+            <mat-select placeholder="Choose Class" 
+              #classCode="ngModel" name="classCode" 
+              [(ngModel)]="classSelected">
+              <span *ngFor="let class of availableClasses">
+              <mat-option  [value]="class.code">
+                {{class.code}} - {{ class.name }} 
+              </mat-option>
+              </span>
+            </mat-select>
+        </mat-form-field>
+      <!-- </div>
+      <div> -->
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Choose Quota" 
+              #quota="ngModel" name="quota"
+              [(ngModel)]="quotaSelected">
+              <mat-option *ngFor="let item of quotas" [value]="item.value">
+                {{item.value}} - {{ item.name }}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
       </div> 
-    <div *ngIf="show_message_try_again">
-        <h3 style="text-align:center;color:red;">Unable to get Status Please Try Again</h3>
+      <button type="submit" mat-raised-button color="warn">Check Seat Availability</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
     </div>
   </form>
-  <div *ngIf="show_classes">
-       <mat-card> 
-        <span style="font-weight:bold;">Class: </span><span *ngFor="let option of classes_array"> {{option }} </span>
-        <span style="font-weight:bold;margin-left:98px;">Runs: </span><span *ngFor="let option of days_array"> {{option}} </span>
-       </mat-card>
-    </div>
+  <br>
+   <div *ngIf="show_spinner" align="center"> 
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+  <div *ngIf="show_message_No_Data_Available" align="center"> 
+    <h3 style="text-align:center;color:red;">No Data Available</h3>
+  </div>
   <div  *ngIf="show_table" class="example-container mat-elevation-z8" style="margin-top: 50px;">
-    <mat-table #table [dataSource]="dataSource">
-      <ng-container matColumnDef="no">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.no}}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="station">
-        <mat-header-cell *matHeaderCellDef>Station</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.station.name}}<br><span style="color:gray">({{element.station.code}})</span></mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="scheduled_time">
-        <mat-header-cell *matHeaderCellDef>Scheduled Time</mat-header-cell>
-        <mat-cell *matCellDef="let element"><span style="color:gray">Arr:  </span>{{element.scharr}}<br><span style="color:gray">Dep: </span>{{element.schdep}}</mat-cell>
-        <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
-      </ng-container>
-      <ng-container matColumnDef="distance">
-        <mat-header-cell *matHeaderCellDef>Distance</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.distance}} km</mat-cell>
-        <!-- <mat-cell *matCellDef="let element"> {{element.schdep}} </mat-cell> -->
-      </ng-container>
-      <ng-container matColumnDef="halt">
-        <mat-header-cell *matHeaderCellDef>Halt</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span  *ngIf="element.halt!==-1">{{element.halt}}</span>
-          <span  *ngIf="element.halt==-1">-</span>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="day">
-        <mat-header-cell *matHeaderCellDef>Day</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.day}}</mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
+      <!-- <div>
+          <mat-table #table [dataSource]="dataSource">
+              <ng-container matColumnDef="train_number">
+                <mat-header-cell *matHeaderCellDef>Train Number</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a href="/indian-train-routes/{{element.train.number}}" target="_blank">{{element.train.number}}</a></mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="train_name">
+                <mat-header-cell *matHeaderCellDef>Train Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.train.name}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{search.date}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="src">
+                <mat-header-cell *matHeaderCellDef>Source</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.from_station.name}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="dst">
+                <mat-header-cell *matHeaderCellDef>Destination</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.to_station.name}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="quota">
+                <mat-header-cell *matHeaderCellDef>Quota</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.quota.code}}-{{element.quota.name}}</mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+           
+      </div> -->
+            <!-- <br>
+            <br> -->
+ 
+       <div>
+            <mat-table #table [dataSource]="dataSource1">
+              <!-- <ng-container *ngFor="let item of displayedColumns1;let i = index" [attr.data-index]="i" [matColumnDef]="item">
+                <mat-header-cell *matHeaderCellDef >{{item}}</mat-header-cell>
+                <mat-cell *matCellDef="let element"><span *ngIf="item=='date'">{{element.date}}</span>
+                  <span *ngIf="item=='CC'">{{element.CC}}</span>
+                  <span *ngIf="item=='SL'">{{element.SL}}</span>
+                  <span *ngIf="item=='3A'">{{element['3A']}}</span> 
+                </mat-cell>
+               
+              </ng-container> -->
+               <ng-container  matColumnDef="date" >
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.date}}</mat-cell>
+              </ng-container> 
+              <ng-container  matColumnDef="availability" >
+                <mat-header-cell *matHeaderCellDef>Availability</mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]="{'colorGreen': (element.status | slice:0:1) == 'A','colorOrange': (element.status | slice:0:1) == 'R' }">{{element.status}}</mat-cell>
+              </ng-container> 
+              <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+            </mat-table>
+      </div>
+    </div> 
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h4>{{trainName}} {{search.trainNumber}} IRCTC Seat Availability | Railway Enquiry</h4>
+          <p>IRCTC Seat Availability of {{search.trainNumber}} {{trainName}} online. our National Train Enquiry System (NTES) gives you current Seat Availability of all train running under Indian Railway.{{trainName}} fares, current booking, timetable, train schedule and route.</p>
+    </mat-card>
+  </div>
+<br>
+<div align="center">
+	<app-google-ad-300-250></app-google-ad-300-250>
+</div>
+    <div *ngIf="show_train_related_post">
+      <h3>Check <a href="/train-live-running-status/{{search.trainNumber}}" target="_blank">{{search.trainNumber}} Live Status</a></h3>
+      <h3>Check <a href="/indian-train-routes/{{search.trainNumber}}" target="_blank">{{search.trainNumber}} {{trainName}} Schedule & Route Map</a></h3>
+      <h3>Find Trains Between<a href="/running-trains-between-stations/{{search.srcCode}}/{{search.dstCode}}/{{search.date}}" target="_blank"> {{search.srcCode}} - {{search.dstCode}}</a></h3>
+    </div>
 </div>

@@ -5,8 +5,11 @@
       <mat-form-field class="example-full-width" >
         <input class="form-control"
         [matAutocomplete]="auto"
-         id=train #trainNumber="ngModel" name="trainNumber" 
-           [(ngModel)]="search.trainNumber" (keyup)="getTrains($event.target.value)"
+         id=train 
+         #trainNumber="ngModel" 
+         name="trainNumber" 
+           [(ngModel)]="search.trainNumber" 
+           (keyup)="getTrains($event)"
            matInput placeholder="Enter Train Number or Name" required>
             <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
         <mat-autocomplete #auto="matAutocomplete">
@@ -16,10 +19,64 @@
         </mat-autocomplete>
       </mat-form-field>
       <button type="submit" mat-raised-button color="warn">Live Status</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
       <div class="alert alert-danger" *ngIf="trainNumber.touched && !trainNumber.valid ">
-                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>                 
+                         <div *ngIf="trainNumber.errors.required">Enter Train number</div>
+                         <div *ngIf="trainNumber.errors.minlength">Train number should be 5 digits</div>
+                         
       </div>
-      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter valid Train number</div>
+      <div *ngIf="show_enter_valid_trainNumber" style="text-align:center;color:red;font-weight:bold" class="autohide">Enter valid Train number<br> Train number should be 5 digits</div>
     </div>
   </form>
+  <br>
+  <div>
+   <mat-card class="example-card">
+          <h4>What is Train Live Running status?</h4>
+          <p> Generally, <strong>Train live status</strong> or <strong>Train running status </strong>is the service provided by Indian Railways to show the <strong>exact location</strong> of any train and <strong>its real time delay</strong> or fast of the Train.  Indian railways track the <strong>running status</strong> of all the trains to keep track of time that particular train arrives at each station. This service will also include the estimated arrival of the train at any particular station en-route.</p>
+          <p>It is needy information for many passengers who doesn’t want to waste their time by waiting in railway stations when they travel by Indian Railways as there is a high chance of train getting delayed.</p>
+          <p>You can always check for Train live running status at <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a> for free to get exact location of train where train is running and when that train reaches your station.</p>
+          <ol>
+            <li>Visit <a href="https://railwayenquiry.net/" target="_blank">railwayenquiry.net</a>
+            </li>
+            <li>Click on “LIVE STATUS”
+            </li>
+            <li>Enter Your Train Number in the Field Provided.
+            </li>
+            <li>Click on the Date When You would like to check.
+            </li>
+            <li>That’s it. Your train Live Running status is ready in front of you.
+            </li>
+          </ol>
+          <p>According to Railway Enquiry, 85% - 90% of the live train running status updates of the train from a particular station arrives with 8-10 minutes of the train arriving or departing or crossing of particular station. For the remaining 15% - 10% of live train updates can take more than that at times reaching to nearly an hour.</p>
+          <p>Many trains do recover their delayed time by the train reaches its end station. So please plan accordingly.</p>
+          <p>There are mainly two terms you need to remember as a passenger while checking Train Live Running status. They are Last Reported Location" and "Estimated Time of Arrival (ETA) at upcoming stops.</p>
+          <p><strong>Last Reported Station:</strong> It means the station based on which the current live train running status is determined. The "Last Reported Station" also conveys that the train has either arrived or departed or crossed that particular station. </p>
+          <p><strong>Estimated Time of Arrival (ETA):</strong>  It conveys the expected time at which the particular train is supposed to arrive at any of its upcoming stops. This is the time when the passenger is expected to be there to board the train in his/her stop.</p>
+          <p><strong>The technology behind getting the live train status update:</strong>Train live running status updates are more accurate as it arrives from the GPS tracker.</p>
+          <h4>NTES:</h4>
+          <p>National Train Enquiry System (NTES) is a web based platform introduced by India Railways to offer number of exclusive services to the passengers. NTES never give the real time status of the train. It gives only the delay time of the train reaching particular station. The delay time ranges from few minutes to several hours. </p>
+          <h4>Which trains in Indian Railways run on time?</h4>
+          <p>Rajdhani and Shatabdi trains are premium trains from Indian railways for which given preference over other trains. Indian Railways tries to maintain the punctuality for these trains.</p>
+          <h4>Rajdhani Train:</h4>
+          <p>These are premium AC trains which link major cities to New Delhi. These are one of the fastest trains in India and are given high priority. These trains travel at a maximum speed of around 130–140 km/h (81–87 mph). These trains have very limited stops and have no chances of getting delayed.</p>
+          <h4>Shatabdi Train:</h4>
+          <p>These trains are intercity trains which are air-conditioned. These trains travel during daytime. Unlike the Rajdhani or Duronto Expresses, all Shatabdi expresses, it makes a round trip on same day. These trains travel at an average 	speed of 90 km/h (56 mph) and touches top speed of 150 kilometres per hour (93 mph). They have limited stops and low chances of getting delayed.</p>
+          <h4>Duronto Trains:</h4>
+          <p>An Indian railway has introduced these non-stop point to point rail services first time in 2009. These trains will only have technical halts. They connect the metros and major state capitals of India and were introduced to travel as fast as Rajdhani Express. They provide first AC, two-tier AC and three-tier AC and non-air-conditioned Sleeper Class accommodation.</p>
+          <h4>Jan Shatabdi:</h4>
+          <p>Jan Shatabdi Express are affordable variety of the Shatabdi Express, which have both AC and non-AC classes. The maximum speed is 110 km/h (68 mph).</p>
+          <h4>Superfast Trains:</h4>
+          <p>These trains travel at a speed greater than 100–110 km/h (62–68 mph). Tickets for these trains have an additional superfast surcharge.</p>
+          <h4>Mail Express Trains:</h4>
+          <p>These are the most common kind of trains in India. They have more stops than their super-fast counterparts, but they stop only at relatively important intermediate stations.</p>
+          <h4>Passenger Trains:</h4>
+          <p>These trains travel at about 40–80 km/h (25–50 mph). In India we have more passenger trains.</p>
+          <h4>Intercity:</h4>
+          <p>These trains were introduced to connect important cities for short routes. These appear in both Superfast Express speed and Express speed category.</p>
+    </mat-card>
+</div>
+  <br>
+  <div align="center">
+    <app-google-ad-300-250></app-google-ad-300-250>
+  </div>
 </div>

@@ -7,6 +7,7 @@
             <!-- <mat-error *ngIf="pnrNumber.invalid">{{getErrorMessage()}}</mat-error> -->
       </mat-form-field>
       <button type="submit" mat-raised-button color="warn">Get PNR Status</button>
+      <app-google-ad-300-250></app-google-ad-300-250>
       <div class="alert alert-danger" *ngIf="pnrNumber.touched && !pnrNumber.valid ">
                         <!-- <div *ngIf="!myForm.form.valid">Enter PNR valid number</div>  -->
                          <div *ngIf="pnrNumber.errors.required">Enter PNR number</div> 
@@ -100,27 +101,26 @@
         <h3><span >Chart Prepared: </span>{{chart_prepared}}</h3>
       </div>
   </div>
-
+    <br>
+<div>
  <mat-card class="example-card">
-  <div class="container ">
-    <div class="row div_border">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <h4>What is PNR:</h4>
-          <p>   PNR in general stands for “Passenger Name Record.” </p>
+          <h3>Check PNR Status at Railway Enquiry </h3>
+          <p>You would be wondering by listening to these IRCTC facts, currently, Indian railways operate 14,300 trains daily and an average of 30 million (3 crores) passengers make their journeys. Indian Railway provides passengers a facility to check train seat availability, check PNR status online, spot your train or train running status to everyone who would like to know. </p>
+          <h4>What is PNR Status:</h4>
+          <p>PNR in general stands for “Passenger Name Record.”</p>
           <p>Simply, PNR is a record in the database of Indian Railways computer reservation system (IR-CRS) which saves the journey details for a passenger or the group of passengers.</p>
-          <p>To understand further, when a passenger reserves a ticket for any train in Indian Railways, all the details of passenger or the group of passengers are stored in the database of Central Railway Systems. PNR is a 10 digit number which is unique for the passenger or a group of passengers booked under one ticket. PNR is a unique reference number which is related to your journey details.</p>
+          <p>To understand further, when a passenger reserves a ticket for any train at IRCTC, all the details of passenger or the group of passengers are stored in the database of Central Railway Systems. PNR is a 10 digit number which is unique for the passenger or a group of passengers booked under one ticket. PNR is a unique reference number which is related to your journey details.</p>
           <p>Passenger’s personal information like Name, Age, Gender and Identity (ID) details are saved in the database for any PNR reference number.</p>
-          <p>Generally, as we all know any Train has limited number of seats available for the journey, sometimes one may not get confirmed ticket and seats availability goes for Waiting List. But sometimes, passengers tends to cancel their confirmed or waiting tickets if their journey has cancelled due to any reason, In that case to know the current status of your ticket, you need PNR to check the status of your seats.</p>
-          <p>You can check PNR status of your railway ticket at <a href="https://railwayenquiry.net/pnr" target="_blank">railwayenquiry.net</a></p>
+          <p>Generally, as we all know any Train has limited number of seats available for the journey, sometimes one may not get confirmed ticket and seat availability goes for Waiting List. But sometimes, passengers tend to cancel their confirmed or waiting list tickets if their journey has canceled due to any reason, In that case, to know the current status of your ticket, you need to check PNR status on mobile or a desktop at your ease. </p>
+          <p>But it’s always better to Check train seat availability before booking your tickets. At <a href="https://railwayenquiry.net/check-pnr-status-online" target="_blank">Railway Enquiry</a>you can always check <a href="https://railwayenquiry.net/train-seat-availability" target="_blank">Train seat availability</a> at any time.</p>
           
           <h4>Where to Find PNR number in your ticket:</h4>
-          <p>Commonly, you can book your railway tickets from a counter in your nearest Railway Station or you can book online in irctc.co.in. But you need to register to book your tickets in online.
-            </p>
+          <p>Commonly, you can book train tickets from a counter in your nearest Railway Station or you can book online in <a href="https://www.irctc.co.in" target="_blank">irctc.co.in.</a> But you need to create an account with IRCTC to book train tickets online.</p>
           <p>If you book your train tickets from any railway station, the PNR number is printed on the top left corner of the printed tickets as shown in the below image.</p>
-          <p><img src="../../assets/sample_ticket.jpg" width="80%"></p>
+          <p><img src="../../assets/sample_ticket.jpg" width="80%"><i>Above Image is a Sample ticket indicating PNR number on it. This PNR number is useful for you to check PNR status for Indian railway ticket.</i></p>
           
           <p>If you book your railway ticket in online, which is generally called as E-ticket the PNR number printed in the separate cell in Top Centre in the first row.</p>
-          <p><img src="../../assets/online_ticket_pnr.png" width="80%"></p>
+          <p><img src="../../assets/online_ticket_pnr.png" width="80%"><i>Above Image is a Sample e-ticket indicating PNR number on it. This PNR number is useful for you to check PNR status for train ticket.</i></p>
 
           <h4>How to check PNR status:</h4>
           <p>There are many different ways to check your PNR status among which popular ones are listed below.
@@ -161,32 +161,35 @@
               <p><strong>Send</strong> <span class="red_font">PNR &lt;your PNR number&gt; to 5676747</span></p>
             </li>
           </ol>
-          <h4>General other Frequently Asked Questions (FAQ) about PNR status:</h4>
-              <h5>1. How is PNR number generated?</h5>
+          <h4>Frequently Asked Questions (FAQ) about PNR status:</h4>
+              <h4><i>1. How is PNR number generated?</i></h4>
               <p>PNR number is a 10-digit unique number in which first 3 digits mentions the zone of the train with respect to the origin station and the remaining 7 digits are randomly generated.</p>
             
-              <h5>2. How can I check IRCTC PNR status live? </h5>
+              <h4><i>2. How can I check IRCTC PNR status live? </i></h4>
               <p>Enter your 10 digit PNR number on <strong>www.railwayenquiry.net</strong> website or railwayenquiry mobile app and click on "PNR Status" button. You will see the current status of your PNR along with other information like confirmation chances, departure-arrival timings, platform number, coach position, delay status and historical trends. </p>
               <p>You can also check PNR status on CRIS maintained Indian Railway website http://www.indianrail.gov.in/enquiry/PnrEnquiry.html or on irctc website https://www.irctc.co.in.</p>
             
-              <h5>3. Are these PNR numbers ever reused?</h5>
+              <h4><i>3. Are these PNR numbers ever reused?</i></h4>
               <p>Seven Days after your journey date, the status changes to "PNR flushed" for all Indian Railway pnr. Nine months after that, Indian Railways can be reused for new train journeys.</p>
               
-              <h5>4. What happens if my railway PNR remains waitlisted after chart preparation?</h5>
+              <h4><i>4. What happens if my railway PNR remains waitlisted after chart preparation?</i></h4>
               <p>If your PNR remains in fully waitlisted mode even after final chart preparation will be automatically cancelled if booked through IRCTC and needs to be cancelled at reservation counters for tickets booked at PRS counters. Indian Railways charged a minimum amount of 60 Rs for cancelled tickets.</p>
       
-      </div>
-    </div>
-  </div> 
- </mat-card>
 
+   </mat-card>
+</div>
+  <br>
+  <div align="center">
+    <app-google-ad-300-250></app-google-ad-300-250>
+  </div>
 </div>
 
 
 <!-- Right sidebar-->
-<!-- <div class="div2">
+ <!-- <div class="div2">
   <h1>hellooooo</h1>
-</div> -->
-
+  <app-right-column></app-right-column>
+</div> 
+ -->
 
   
